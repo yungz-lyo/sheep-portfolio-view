@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, noimageindex">
+  <title>Sheep Photography Portfolio</title>
+  <meta name="description" content="商业产品摄影、电商视觉、社媒 Campaign 与摄影作品集页面。">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101114'/%3E%3Ccircle cx='22' cy='25' r='9' fill='%23e9d29b'/%3E%3Cpath d='M16 43c10-18 24-26 38-24-6 14-18 22-38 24Z' fill='%237aa7b8'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #101114;
+      --panel: #17191d;
+      --panel-2: #f5f2ea;
+      --ink: #f7f4ec;
+      --paper-ink: #17191d;
+      --muted: #a9adb5;
+      --line: rgba(255,255,255,.14);
+      --accent: #7aa7b8;
+      --gold: #e9d29b;
+      --radius: 6px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
+      line-height: 1.5;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    button {
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+    .wrap { width: min(1180px, calc(100vw - 36px)); margin: 0 auto; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(16,17,20,.88);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--gold) 0 18%, transparent 19%), linear-gradient(135deg, transparent 0 42%, var(--accent) 43% 68%, transparent 69%);
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .nav-links a { border-bottom: 1px solid transparent; padding: 18px 0 16px; }
+    .nav-links a:hover { color: var(--ink); border-color: var(--gold); }
+    .hero {
+      min-height: calc(100svh - 58px);
+      display: grid;
+      align-items: end;
+      padding: 54px 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
+      gap: 28px;
+      align-items: end;
+    }
+    .eyebrow {
+      color: var(--gold);
+      font-size: .76rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+    h1 {
+      margin: 14px 0 18px;
+      font-size: clamp(3.2rem, 9vw, 8.4rem);
+      line-height: .86;
+      letter-spacing: 0;
+      max-width: 9ch;
+    }
+    .intro {
+      margin: 0;
+      max-width: 600px;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.8vw, 1.24rem);
+    }
+    .hero-image {
+      position: relative;
+      min-height: min(72svh, 720px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+    }
+    .hero-caption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #fff;
+      font-size: .82rem;
+      text-shadow: 0 1px 16px rgba(0,0,0,.55);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+    .stat {
+      background: var(--panel);
+      padding: 16px;
+      min-height: 90px;
+    }
+    .stat b { display: block; font-size: 1.85rem; line-height: 1; }
+    .stat span { display: block; margin-top: 8px; color: var(--muted); font-size: .82rem; }
+    section { padding: 74px 0; border-bottom: 1px solid var(--line); }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4.6vw, 4.8rem);
+      line-height: .9;
+      letter-spacing: 0;
+    }
+    .section-copy {
+      margin: 0;
+      max-width: 440px;
+      color: var(--muted);
+      font-size: .98rem;
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .filter {
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .filter[aria-pressed="true"] {
+      color: var(--bg);
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .gallery {
+      columns: 3 250px;
+      column-gap: 14px;
+    }
+    .work {
+      break-inside: avoid;
+      margin: 0 0 14px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .work:hover { transform: translateY(-2px); border-color: rgba(233,210,155,.56); }
+    .work img { width: 100%; height: auto; }
+    .work figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px 12px;
+      color: var(--muted);
+      font-size: .76rem;
+    }
+    .tag { color: var(--accent); font-weight: 700; }
+    .slides {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .slide {
+      background: var(--panel-2);
+      color: var(--paper-ink);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+    }
+    .slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .slide span {
+      display: block;
+      padding: 10px 12px;
+      font-size: .82rem;
+      color: rgba(23,25,29,.72);
+    }
+    .profile {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .profile-panel {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
+    .profile-panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.15rem;
+    }
+    .profile-panel p, .profile-panel li { color: var(--muted); }
+    .profile-panel ul { margin: 0; padding-left: 18px; }
+    .profile-panel li + li { margin-top: 8px; }
+    .footer {
+      padding: 46px 0 58px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(0,0,0,.88);
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-height: 88svh;
+      width: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 24px 80px rgba(0,0,0,.5);
+    }
+    .close {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      font-size: 1.4rem;
+    }
+    @media (max-width: 860px) {
+      .nav-inner, .section-head, .profile { display: block; }
+      .nav-links { gap: 10px; padding-bottom: 12px; }
+      .nav-links a { padding: 0; }
+      .hero { min-height: auto; padding-top: 38px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-image { min-height: 58svh; margin-top: 28px; }
+      .stats { grid-template-columns: 1fr; }
+      .slides { grid-template-columns: 1fr; }
+      section { padding: 54px 0; }
+      .section-copy { margin-top: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="作品集导航">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>Sheep Portfolio</span></a>
+      <div class="nav-links">
+        <a href="#works">精选作品</a>
+        <a href="#deck">完整作品集</a>
+        <a href="#profile">摄影方向</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Commercial Product Photography</div>
+          <h1>刘伯阳 摄影作品集</h1>
+          <p class="intro">聚焦 3C 配件、钱包卡包、社媒 Campaign 与电商产品视觉，把产品识别、材质细节、真实使用场景和平台交付统一到干净有力的画面里。</p>
+          <div class="stats" aria-label="作品集概况">
+            <div class="stat"><b>24</b><span>精选单张作品</span></div>
+            <div class="stat"><b>17</b><span>完整作品集页面</span></div>
+            <div class="stat"><b>5</b><span>视觉展示方向</span></div>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="assets/photos/photo-16.jpg" alt="黑色产品与桌面场景摄影作品">
+          <figcaption class="hero-caption"><span>Amazon / Campaign</span><span>Product & Scene</span></figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <section id="works">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>精选作品</h2>
+          <p class="section-copy">从指定素材整理出的代表性图片，按电商产品、3C 桌面、钱包卡包和社媒 Campaign 做外部展示。</p>
+        </div>
+        <div class="filter-row" aria-label="作品筛选">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="3C">3C 配件</button>
+          <button class="filter" type="button" data-filter="Wallet">钱包卡包</button>
+          <button class="filter" type="button" data-filter="Social">社媒 Campaign</button>
+          <button class="filter" type="button" data-filter="Minimal">极简高端</button>
+        </div>
+        <div class="gallery" id="gallery" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="deck">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>完整作品集</h2>
+          <p class="section-copy">保留 PPT 版本的叙事顺序，可直接给外部查看整体结构和视觉底稿。</p>
+        </div>
+        <div class="slides" id="slides"></div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="wrap profile">
+        <div class="profile-panel">
+          <h3>适合岗位</h3>
+          <ul>
+            <li>商业产品摄影师</li>
+            <li>Amazon / 电商视觉摄影师</li>
+            <li>社媒 Campaign 内容摄影</li>
+            <li>3C 配件与小物件视觉拍摄</li>
+          </ul>
+        </div>
+        <div class="profile-panel">
+          <h3>可复用能力</h3>
+          <p>围绕产品定位、用户场景、材质质感、构图留白和平台比例进行拍摄组织；能将单张作品、社媒素材和发布会式视觉整理成可外部查看的作品集结构。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">Viewing-only photography portfolio. Site content is static and editable only by the owner.</div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+    <button class="close" type="button" aria-label="关闭预览">×</button>
+    <img alt="">
+  </div>
+
+  <script>
+    const works = [
+      ["photo-01.jpg", "City launch scene", "Social"],
+      ["photo-02.jpg", "Desktop product scene", "3C"],
+      ["photo-03.jpg", "Minimal product still", "Minimal"],
+      ["photo-04.jpg", "Product detail composition", "Minimal"],
+      ["photo-05.jpg", "Clean tabletop set", "3C"],
+      ["photo-06.jpg", "Accessory lifestyle", "3C"],
+      ["photo-07.jpg", "Warm product scene", "3C"],
+      ["photo-08.jpg", "Portable vertical campaign", "Social"],
+      ["photo-09.jpg", "Crowdfunding social asset", "Social"],
+      ["photo-10.jpg", "Magnetic accessory campaign", "3C"],
+      ["photo-11.jpg", "iPad gift season", "Social"],
+      ["photo-12.jpg", "Launch banner image", "Social"],
+      ["photo-13.jpg", "Find My wallet", "Wallet"],
+      ["photo-14.jpg", "Amazon square post", "Social"],
+      ["photo-15.jpg", "Horizontal charging scene", "3C"],
+      ["photo-16.jpg", "Amazon product post", "Social"],
+      ["photo-17.jpg", "Wallet campaign detail", "Wallet"],
+      ["photo-18.jpg", "Amazon post layout", "Social"],
+      ["photo-19.jpg", "Thanksgiving content", "Social"],
+      ["photo-20.jpg", "Wide social banner", "Social"],
+      ["photo-21.jpg", "Minimal object study", "Minimal"],
+      ["photo-22.jpg", "Outdoor waterproof pouch", "Social"],
+      ["photo-23.jpg", "White product still", "Minimal"],
+      ["photo-24.jpg", "Black product still", "Minimal"]
+    ];
+    const gallery = document.querySelector("#gallery");
+    const filters = document.querySelectorAll(".filter");
+    const lightbox = document.querySelector("#lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const closeButton = lightbox.querySelector(".close");
+
+    function renderWorks(filter = "all") {
+      gallery.innerHTML = "";
+      works.filter((item) => filter === "all" || item[2] === filter).forEach(([file, title, tag], index) => {
+        const fig = document.createElement("figure");
+        fig.className = "work";
+        fig.innerHTML = `<button type="button" aria-label="预览 ${title}"><img src="assets/photos/${file}" alt="${title}" loading="${index < 6 ? "eager" : "lazy"}"></button><figcaption><span>${title}</span><span class="tag">${tag}</span></figcaption>`;
+        fig.querySelector("button").addEventListener("click", () => openLightbox(`assets/photos/${file}`, title));
+        gallery.appendChild(fig);
+      });
+    }
+
+    function renderSlides() {
+      const slides = document.querySelector("#slides");
+      for (let i = 1; i <= 17; i += 1) {
+        const n = String(i).padStart(2, "0");
+        const item = document.createElement("figure");
+        item.className = "slide";
+        item.innerHTML = `<button type="button" aria-label="预览作品集第 ${i} 页"><img src="assets/slides/slide-${n}.jpg" alt="作品集第 ${i} 页" loading="${i < 5 ? "eager" : "lazy"}"></button><span>Portfolio page ${i}</span>`;
+        item.querySelector("button").addEventListener("click", () => openLightbox(`assets/slides/slide-${n}.jpg`, `作品集第 ${i} 页`));
+        slides.appendChild(item);
+      }
+    }
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightbox.classList.add("open");
+      closeButton.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImg.removeAttribute("src");
+    }
+
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        filters.forEach((item) => item.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        renderWorks(button.dataset.filter);
+      });
+    });
+    closeButton.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeLightbox();
+    });
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    document.addEventListener("dragstart", (event) => event.preventDefault());
+
+    renderWorks();
+    renderSlides();
+  </script>
+</body>
+</html>
