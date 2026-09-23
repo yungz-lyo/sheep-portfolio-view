@@ -5,283 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
   <meta name="googlebot" content="noindex, nofollow, noarchive, noimageindex">
-  <title>刘伯阳 | 商业产品摄影作品集</title>
-  <meta name="description" content="刘伯阳商业产品摄影作品集，涵盖 3C 配件、电商视觉、社媒 Campaign 与产品场景摄影。">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111111'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23f06449'/%3E%3C/svg%3E">
+  <title>刘伯阳 | 商业产品摄影</title>
+  <meta name="description" content="刘伯阳商业产品摄影作品集，聚焦产品系统、材质动作与场景叙事。">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a0a'/%3E%3Ccircle cx='32' cy='32' r='11' fill='%23ff3b30'/%3E%3C/svg%3E">
   <style>
     :root {
-      --paper: #f4f4f0;
-      --white: #ffffff;
-      --ink: #111111;
-      --muted: #676760;
-      --line: rgba(17,17,17,.2);
-      --red: #f06449;
-      --mint: #31c9ad;
-      --blue: #dfe8f2;
-      --gutter: clamp(18px, 3vw, 46px);
-      --max: 1480px;
+      --ink: #0a0a0a;
+      --paper: #fff;
+      --soft: #f2f2ef;
+      --muted: #686864;
+      --red: #ff3b30;
+      --line: rgba(10,10,10,.18);
+      --gutter: clamp(18px, 3.2vw, 52px);
+      --max: 1520px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
+      overflow-x: hidden;
       background: var(--paper);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
       line-height: 1.5;
     }
     body.locked { overflow: hidden; }
-    img {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
-      -webkit-touch-callout: none;
-    }
+    img { display: block; width: 100%; max-width: 100%; user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
     a { color: inherit; text-decoration: none; }
-    button {
-      appearance: none;
-      border: 0;
-      margin: 0;
-      padding: 0;
-      color: inherit;
-      background: transparent;
-      font: inherit;
-      cursor: pointer;
-    }
+    button { appearance: none; border: 0; margin: 0; padding: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
     .wrap { width: min(var(--max), calc(100vw - var(--gutter) * 2)); margin: 0 auto; }
     .nav {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(244,244,240,.94);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
-    }
-    .nav-inner {
-      min-height: 58px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 24px;
-    }
-    .brand { font-size: .94rem; font-weight: 800; }
-    .brand span { color: var(--red); }
-    .nav-links { display: flex; gap: 22px; font-size: .82rem; color: var(--muted); }
-    .nav-links a { padding: 19px 0 17px; border-bottom: 2px solid transparent; }
-    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); border-color: var(--red); }
-
-    .hero {
-      position: relative;
-      min-height: min(820px, calc(100svh - 58px));
-      height: 82svh;
-      overflow: hidden;
-      background: #2b2927;
-      color: var(--white);
-    }
-    .hero > img { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: center 48%; }
-    .hero::after {
-      content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.25) 46%, rgba(0,0,0,.08) 74%), linear-gradient(0deg, rgba(0,0,0,.42), transparent 42%);
+      inset: 0 0 auto;
+      z-index: 30;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.32);
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: clamp(44px, 7vh, 88px) 0 30px;
-    }
-    .hero-kicker { font-size: .76rem; font-weight: 800; text-transform: uppercase; }
-    .hero h1 {
-      margin: 10px 0 18px;
-      max-width: 8ch;
-      font-size: clamp(3.5rem, 10vw, 9.6rem);
-      line-height: .88;
-      letter-spacing: 0;
-    }
-    .hero-copy { max-width: 530px; margin: 0; font-size: clamp(1rem, 1.55vw, 1.24rem); }
-    .hero-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,.5);
-      font-size: .78rem;
-      text-transform: uppercase;
-    }
+    .nav-inner { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { font-size: .84rem; font-weight: 760; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 38px); font-size: .78rem; }
+    .nav-links a { padding: 24px 0 21px; border-bottom: 2px solid transparent; }
+    .nav-links a:hover { border-color: var(--red); }
 
-    .intro-band { padding: clamp(54px, 8vw, 112px) 0; background: var(--white); border-bottom: 1px solid var(--line); }
-    .intro-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(36px, 7vw, 110px); align-items: end; }
-    .intro-statement { margin: 0; max-width: 18ch; font-size: clamp(2rem, 4.6vw, 5.4rem); line-height: .98; font-weight: 750; }
-    .intro-statement em { color: var(--red); font-style: normal; }
-    .intro-detail { display: grid; gap: 26px; }
-    .intro-detail p { margin: 0; max-width: 580px; font-size: 1rem; color: var(--muted); }
-    .disciplines { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-    .disciplines span { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .78rem; text-transform: uppercase; }
+    .hero { position: relative; height: min(900px, 92svh); min-height: 630px; overflow: hidden; color: #fff; background: #373432; }
+    .hero > img { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: center 50%; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.18) 43%, rgba(0,0,0,.04) 74%); }
+    .hero-content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(74px, 10vh, 116px); }
+    .hero h1 { margin: 0; font-size: clamp(4.3rem, 9vw, 9rem); line-height: .9; letter-spacing: 0; }
+    .hero-role { margin: 18px 0 0; font-size: clamp(1rem, 1.7vw, 1.35rem); }
+    .hero-note { position: absolute; left: 0; bottom: 22px; display: flex; gap: 16px; align-items: center; font-size: .72rem; color: rgba(255,255,255,.78); }
+    .hero-note::before { content: ""; width: 38px; height: 1px; background: var(--red); }
 
-    .projects { background: var(--paper); }
-    .project { padding: clamp(64px, 9vw, 132px) 0; border-bottom: 1px solid var(--line); }
-    .project.dark { color: var(--white); background: #101010; }
-    .project.blue { background: var(--blue); }
-    .project-head {
-      display: grid;
-      grid-template-columns: 120px minmax(0, 1fr) minmax(260px, 420px);
-      gap: 24px;
-      align-items: end;
-      margin-bottom: clamp(28px, 4vw, 54px);
-    }
-    .project-number { font-size: .76rem; font-weight: 800; }
-    .project h2 { margin: 0; font-size: clamp(2.8rem, 7vw, 7.4rem); line-height: .86; letter-spacing: 0; }
-    .project-copy { margin: 0; color: var(--muted); font-size: .96rem; }
-    .dark .project-copy { color: rgba(255,255,255,.65); }
-    .project-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(8px, 1.25vw, 18px); align-items: start; }
-    .shot { margin: 0; min-width: 0; }
-    .shot button { display: block; width: 100%; text-align: left; }
-    .shot img { height: 100%; object-fit: cover; background: #deded8; transition: filter .25s ease, opacity .25s ease; }
-    .shot:hover img { filter: contrast(1.03); opacity: .94; }
-    .shot figcaption {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding-top: 9px;
-      color: var(--muted);
-      font-size: .72rem;
-      text-transform: uppercase;
-    }
-    .dark .shot figcaption { color: rgba(255,255,255,.58); }
-    .shot .index { color: var(--ink); font-weight: 800; }
-    .dark .shot .index { color: var(--mint); }
+    .index-band { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .index-inner { display: grid; grid-template-columns: minmax(240px, .8fr) 1.2fr; gap: clamp(40px, 8vw, 140px); padding: clamp(70px, 10vw, 140px) 0; }
+    .index-title { margin: 0; max-width: 11ch; font-size: clamp(2rem, 4.2vw, 4.8rem); line-height: 1.02; }
+    .work-index { border-top: 1px solid var(--ink); }
+    .work-index a { display: grid; grid-template-columns: 42px 1fr auto; gap: 18px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .work-index a:hover .work-name { color: var(--red); }
+    .work-no, .work-meta { font-size: .72rem; color: var(--muted); }
+    .work-name { font-size: clamp(1.25rem, 2vw, 2rem); font-weight: 680; transition: color .2s ease; }
+
+    .project { position: relative; border-bottom: 1px solid var(--line); }
+    .project.dark { color: #fff; background: var(--ink); }
+    .project.soft { background: var(--soft); }
+    .project-hero { position: relative; min-height: min(780px, 82svh); overflow: hidden; background: #ddd; }
+    .project-hero img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+    .project-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.62), rgba(0,0,0,.08) 60%); }
+    .project-title { position: relative; z-index: 1; min-height: inherit; display: grid; grid-template-columns: 70px minmax(0, 1fr); align-content: center; gap: 22px; color: #fff; }
+    .project-no { padding-top: 12px; color: var(--red); font-size: .78rem; font-weight: 760; }
+    .project-title h2 { margin: 0; font-size: clamp(3rem, 7.2vw, 7.8rem); line-height: .9; letter-spacing: 0; }
+    .project-title p { grid-column: 2; margin: 20px 0 0; max-width: 470px; color: rgba(255,255,255,.84); }
+    .project-meta { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; font-size: .72rem; color: rgba(255,255,255,.7); }
+    .gallery { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(8px, 1.3vw, 20px); padding: clamp(10px, 1.5vw, 22px) 0 clamp(72px, 10vw, 148px); }
+    .shot { min-width: 0; margin: 0; }
+    .shot button { display: block; width: 100%; background: #deded9; overflow: hidden; }
+    .shot img { height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .shot:hover img { transform: scale(1.018); }
+    .shot figcaption { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0 3px; color: var(--muted); font-size: .7rem; }
+    .dark .shot figcaption { color: rgba(255,255,255,.56); }
+    .shot .count { color: var(--red); }
     .span-12 { grid-column: span 12; }
     .span-8 { grid-column: span 8; }
     .span-7 { grid-column: span 7; }
     .span-6 { grid-column: span 6; }
     .span-5 { grid-column: span 5; }
     .span-4 { grid-column: span 4; }
-    .ratio-wide button { aspect-ratio: 2 / 1; }
-    .ratio-land button { aspect-ratio: 3 / 2; }
-    .ratio-square button { aspect-ratio: 1 / 1; }
-    .ratio-tall button { aspect-ratio: 4 / 5; }
-    .offset-top { margin-top: clamp(48px, 8vw, 130px); }
-    .project-note {
-      grid-column: span 4;
-      align-self: end;
-      margin: 0 0 26px;
-      max-width: 28ch;
-      font-size: clamp(1.2rem, 2.2vw, 2.1rem);
-      line-height: 1.12;
-      font-weight: 650;
-    }
-    .project-note span { display: block; margin-bottom: 16px; color: var(--red); font-size: .72rem; text-transform: uppercase; }
+    .wide button { aspect-ratio: 2 / 1; }
+    .land button { aspect-ratio: 3 / 2; }
+    .square button { aspect-ratio: 1 / 1; }
+    .tall button { aspect-ratio: 4 / 5; }
+    .offset { margin-top: clamp(54px, 9vw, 150px); }
+    .gallery-note { grid-column: span 4; align-self: center; padding: clamp(24px, 3vw, 46px); border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; }
+    .gallery-note strong { display: block; margin-bottom: 12px; color: var(--red); font-size: .72rem; }
+    .gallery-note p { margin: 0; font-size: clamp(1.15rem, 2vw, 1.9rem); line-height: 1.25; }
 
-    .deck { padding: clamp(64px, 9vw, 120px) 0; background: var(--white); border-bottom: 1px solid var(--line); }
-    .deck-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 30px; }
-    .deck h2 { margin: 0; font-size: clamp(2.6rem, 6vw, 6.3rem); line-height: .9; }
-    .deck-copy { margin: 12px 0 0; max-width: 560px; color: var(--muted); }
+    .deck { padding: clamp(72px, 10vw, 140px) 0; background: var(--paper); border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 34px; }
+    .section-head h2 { margin: 0; font-size: clamp(2.6rem, 6vw, 6.5rem); line-height: .92; }
+    .section-head p { margin: 14px 0 0; max-width: 520px; color: var(--muted); }
     .deck-controls { display: flex; gap: 8px; }
-    .deck-control {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      font-size: 1.5rem;
-    }
-    .deck-control:hover, .deck-control:focus-visible { color: var(--white); background: var(--ink); }
-    .slides {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: min(72vw, 880px);
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 18px;
-      scroll-snap-type: x mandatory;
-      overscroll-behavior-inline: contain;
-      scrollbar-width: thin;
-    }
+    .icon-button { width: 46px; height: 46px; border: 1px solid var(--line); font-size: 1.45rem; }
+    .icon-button:hover { color: #fff; background: var(--ink); }
+    .slides { display: grid; grid-auto-flow: column; grid-auto-columns: min(74vw, 920px); gap: 14px; overflow-x: auto; padding-bottom: 18px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; scrollbar-width: thin; }
     .slide { margin: 0; scroll-snap-align: start; }
-    .slide button { display: block; width: 100%; aspect-ratio: 16 / 9; background: #ecece7; }
+    .slide button { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--soft); }
     .slide img { height: 100%; object-fit: cover; }
-    .slide figcaption { padding-top: 9px; color: var(--muted); font-size: .74rem; text-transform: uppercase; }
+    .slide figcaption { padding-top: 9px; color: var(--muted); font-size: .7rem; }
 
-    .profile { padding: clamp(64px, 9vw, 120px) 0; background: var(--red); color: var(--ink); }
-    .profile-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(36px, 9vw, 140px); }
-    .profile h2 { margin: 0; max-width: 11ch; font-size: clamp(2.7rem, 6vw, 6.4rem); line-height: .9; }
-    .profile-copy { display: grid; gap: 26px; align-content: end; }
-    .profile-copy p { margin: 0; font-size: 1rem; }
-    .profile-list { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid rgba(17,17,17,.4); }
-    .profile-list span { padding: 12px 0; border-bottom: 1px solid rgba(17,17,17,.4); font-size: .78rem; }
-
-    .footer { padding: 28px 0 42px; background: var(--ink); color: rgba(255,255,255,.68); font-size: .78rem; }
+    .about { padding: clamp(74px, 11vw, 160px) 0; color: #fff; background: #181815; }
+    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(44px, 10vw, 160px); }
+    .about h2 { margin: 0; max-width: 10ch; font-size: clamp(2.8rem, 6.4vw, 7rem); line-height: .92; }
+    .about-copy { align-self: end; }
+    .about-copy p { margin: 0 0 34px; max-width: 560px; color: rgba(255,255,255,.72); }
+    .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid rgba(255,255,255,.3); }
+    .services span { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.3); font-size: .75rem; }
+    .update { margin-top: 34px; padding-left: 52px; position: relative; font-size: .72rem; color: rgba(255,255,255,.55); }
+    .update::before { content: ""; position: absolute; left: 0; top: .7em; width: 36px; height: 1px; background: var(--red); }
+    .footer { padding: 26px 0 36px; color: rgba(255,255,255,.55); background: #181815; border-top: 1px solid rgba(255,255,255,.18); font-size: .72rem; }
     .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
 
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(18px, 4vw, 56px);
-      background: rgba(0,0,0,.92);
-    }
+    .lightbox { position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center; padding: clamp(20px, 5vw, 72px); background: rgba(0,0,0,.94); }
     .lightbox.open { display: flex; }
-    .lightbox img { width: auto; max-width: 100%; max-height: 88svh; object-fit: contain; }
-    .close {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(255,255,255,.45);
-      border-radius: 50%;
-      color: var(--white);
-      background: rgba(0,0,0,.35);
-      font-size: 1.45rem;
-    }
+    .lightbox img { width: auto; max-width: 100%; max-height: 86svh; object-fit: contain; }
+    .lightbox-control { position: fixed; top: 50%; width: 46px; height: 46px; color: #fff; border: 1px solid rgba(255,255,255,.45); background: rgba(0,0,0,.28); font-size: 1.45rem; transform: translateY(-50%); }
+    .lightbox-prev { left: 14px; }
+    .lightbox-next { right: 14px; }
+    .close { position: fixed; top: 14px; right: 14px; width: 46px; height: 46px; color: #fff; border: 1px solid rgba(255,255,255,.45); background: rgba(0,0,0,.28); font-size: 1.4rem; }
 
     @media (max-width: 900px) {
-      .hero { height: 76svh; min-height: 560px; }
-      .hero::after { background: linear-gradient(0deg, rgba(0,0,0,.72), rgba(0,0,0,.08) 72%); }
-      .hero-content { justify-content: flex-end; gap: 28px; }
-      .hero-meta { display: none; }
-      .intro-grid, .profile-grid { grid-template-columns: 1fr; }
-      .project-head { grid-template-columns: 60px minmax(0, 1fr); }
-      .project-copy { grid-column: 2; max-width: 520px; }
-      .span-8, .span-7, .span-6, .span-5, .span-4, .project-note { grid-column: span 6; }
-      .offset-top { margin-top: 44px; }
-      .slides { grid-auto-columns: min(86vw, 720px); }
+      .hero { height: 84svh; min-height: 590px; }
+      .hero > img { object-position: 54% center; }
+      .index-inner, .about-grid { grid-template-columns: 1fr; }
+      .index-title { max-width: 14ch; }
+      .span-8, .span-7, .span-6, .span-5, .span-4, .gallery-note { grid-column: span 6; }
+      .slides { grid-auto-columns: 84vw; }
     }
     @media (max-width: 620px) {
       :root { --gutter: 16px; }
-      .nav-inner { min-height: 54px; }
-      .nav-links { gap: 14px; font-size: .76rem; }
+      .nav-inner { min-height: 58px; }
+      .brand { font-size: .76rem; }
+      .nav-links { gap: 14px; font-size: .7rem; }
+      .nav-links a { padding: 20px 0 17px; }
       .nav-links a:nth-child(2) { display: none; }
-      .hero { min-height: 520px; height: 74svh; }
-      .hero > img { object-position: 57% center; }
-      .hero-content { padding-bottom: 22px; }
-      .hero h1 { font-size: clamp(3.15rem, 17vw, 5.5rem); }
-      .intro-statement { max-width: 13ch; }
-      .disciplines { grid-template-columns: 1fr; }
-      .project-head { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; }
-      .project h2 { font-size: clamp(2.8rem, 15vw, 4.8rem); }
-      .project-copy { grid-column: 1 / -1; margin-top: 8px; }
-      .project-grid { grid-template-columns: 1fr; gap: 34px; }
-      .span-12, .span-8, .span-7, .span-6, .span-5, .span-4, .project-note { grid-column: 1; }
-      .offset-top { margin-top: 0; }
-      .project-note { margin: 8px 0 2px; }
+      .hero { min-height: 540px; height: 82svh; }
+      .hero > img { object-position: 55% center; }
+      .hero::after { background: linear-gradient(0deg, rgba(0,0,0,.72), rgba(0,0,0,.05) 72%); }
+      .hero-content { padding-bottom: 72px; }
+      .hero h1 { font-size: clamp(4rem, 21vw, 6rem); }
+      .hero-role { font-size: .95rem; }
+      .index-inner { gap: 46px; }
+      .work-index a { grid-template-columns: 30px 1fr; gap: 10px; }
+      .work-meta { grid-column: 2; }
+      .project-hero { min-height: 620px; }
+      .project-hero img { object-position: 60% center; }
+      #scene .project-hero img { object-position: 58% center; }
+      .project-title { grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-content: end; padding-bottom: 52px; }
+      .project-title h2 { font-size: clamp(3rem, 15vw, 4.8rem); }
+      .project-title p, .project-meta { grid-column: 1 / -1; }
+      .gallery { grid-template-columns: 1fr; gap: 34px; }
+      .span-12, .span-8, .span-7, .span-6, .span-5, .span-4, .gallery-note { grid-column: 1; }
+      .offset { margin-top: 0; }
       .shot button { aspect-ratio: auto; }
-      .shot img { height: auto; object-fit: contain; }
-      .shot figcaption { font-size: .69rem; }
-      .deck-head { grid-template-columns: 1fr; }
+      .shot img { height: auto; }
+      .gallery-note { padding: 28px 0; }
+      .section-head { grid-template-columns: 1fr; }
       .deck-controls { display: none; }
       .slides { grid-auto-columns: 90vw; gap: 10px; }
-      .profile-list { grid-template-columns: 1fr; }
+      .services { grid-template-columns: 1fr; }
       .footer-inner { display: grid; gap: 6px; }
+      .lightbox-control { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -292,12 +185,8 @@
 <body>
   <nav class="nav" aria-label="作品集导航">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top">LIU BOYANG <span>/ SHEEP</span></a>
-      <div class="nav-links">
-        <a href="#projects">作品</a>
-        <a href="#deck">作品册</a>
-        <a href="#profile">关于</a>
-      </div>
+      <a class="brand" href="#top">刘伯阳 / SHEEP</a>
+      <div class="nav-links"><a href="#work">精选项目</a><a href="#deck">影像</a><a href="#about">关于</a></div>
     </div>
   </nav>
 
@@ -305,124 +194,112 @@
     <header class="hero">
       <img src="assets/photos/photo-02.jpg" alt="圆桌上的手机支架与 3C 配件产品组合" fetchpriority="high">
       <div class="wrap hero-content">
-        <div>
-          <div class="hero-kicker">Commercial Product Photographer</div>
-          <h1>刘伯阳</h1>
-          <p class="hero-copy">用光线、材质与真实动作，建立清晰、有购买力的产品画面。</p>
-        </div>
-        <div class="hero-meta"><span>3C / Accessories / E-commerce</span><span>Selected work / Product &amp; Campaign</span></div>
+        <h1>刘伯阳</h1>
+        <p class="hero-role">商业产品摄影 / 动态影像</p>
+        <span class="hero-note">用影像，让产品被看见</span>
       </div>
     </header>
 
-    <section class="intro-band" aria-labelledby="intro-title">
-      <div class="wrap intro-grid">
-        <h2 class="intro-statement" id="intro-title">产品、动作和场景，在同一条<em>叙事线</em>里。</h2>
-        <div class="intro-detail">
-          <p>从功能识别、材质质感到使用情境，画面服务于产品沟通，也保留品牌需要的视觉记忆点。</p>
-          <div class="disciplines" aria-label="摄影方向">
-            <span>Product still life</span><span>Amazon / E-commerce</span>
-            <span>Lifestyle campaign</span><span>Social content</span>
-          </div>
+    <section class="index-band" id="work" aria-labelledby="work-title">
+      <div class="wrap index-inner">
+        <h2 class="index-title" id="work-title">从产品本身，延伸到真实使用情境。</h2>
+        <div class="work-index" aria-label="精选项目索引">
+          <a href="#system"><span class="work-no">01</span><span class="work-name">产品系统</span><span class="work-meta">产品摄影 / 场景搭建 / 后期</span></a>
+          <a href="#action"><span class="work-no">02</span><span class="work-name">材质与动作</span><span class="work-meta">功能演示 / 动作捕捉 / 细节</span></a>
+          <a href="#scene"><span class="work-no">03</span><span class="work-name">场景叙事</span><span class="work-meta">生活方式 / 户外 / 社媒</span></a>
         </div>
       </div>
     </section>
 
-    <div class="projects" id="projects">
-      <section class="project" aria-labelledby="project-01">
-        <div class="wrap">
-          <header class="project-head"><span class="project-number">01 / 04</span><h2 id="project-01">Product<br>Systems</h2><p class="project-copy">围绕 3C 产品建立从整体生态、桌面使用到细节功能的完整画面层级。</p></header>
-          <div class="project-grid">
-            <figure class="shot span-12 ratio-wide"><button type="button" data-photo="photo-02.jpg" aria-label="预览产品生态场景"><img src="assets/photos/photo-02.jpg" alt="圆桌上的 3C 产品生态场景" loading="eager"></button><figcaption><span>Device ecosystem</span><span class="index">01</span></figcaption></figure>
-            <figure class="shot span-7 ratio-square"><button type="button" data-photo="photo-03.jpg" aria-label="预览蓝色桌面配件组合"><img src="assets/photos/photo-03.jpg" alt="蓝色桌面配件与平板电脑组合" loading="eager"></button><figcaption><span>Tabletop composition</span><span class="index">02</span></figcaption></figure>
-            <figure class="shot span-5 ratio-land offset-top"><button type="button" data-photo="photo-04.jpg" aria-label="预览居家工作场景"><img src="assets/photos/photo-04.jpg" alt="居家工作空间里的充电产品" loading="lazy"></button><figcaption><span>Work from home</span><span class="index">03</span></figcaption></figure>
-            <p class="project-note"><span>Visual note</span>让同一产品在纯产品、功能动作和真实桌面之间自然切换。</p>
-            <figure class="shot span-4 ratio-square"><button type="button" data-photo="photo-05.jpg" aria-label="预览手机局部特写"><img src="assets/photos/photo-05.jpg" alt="紫色光线下的手机局部特写" loading="lazy"></button><figcaption><span>Material close-up</span><span class="index">04</span></figcaption></figure>
-            <figure class="shot span-4 ratio-land offset-top"><button type="button" data-photo="photo-06.jpg" aria-label="预览触控笔暗调场景"><img src="assets/photos/photo-06.jpg" alt="暗调环境中的触控笔与平板" loading="lazy"></button><figcaption><span>Low-key detail</span><span class="index">05</span></figcaption></figure>
-            <figure class="shot span-6 ratio-square"><button type="button" data-photo="photo-14.jpg" aria-label="预览平板创作场景"><img src="assets/photos/photo-14.jpg" alt="平板绘画与桌面创作场景" loading="lazy"></button><figcaption><span>Creator workflow</span><span class="index">06</span></figcaption></figure>
-            <figure class="shot span-6 ratio-square offset-top"><button type="button" data-photo="photo-18.jpg" aria-label="预览创作桌面特写"><img src="assets/photos/photo-18.jpg" alt="平板与桌面设备创作特写" loading="lazy"></button><figcaption><span>Desk detail</span><span class="index">07</span></figcaption></figure>
-            <figure class="shot span-12 ratio-land"><button type="button" data-photo="photo-21.jpg" aria-label="预览白色充电支架"><img src="assets/photos/photo-21.jpg" alt="白色背景上的两款充电支架" loading="lazy"></button><figcaption><span>Clean product family</span><span class="index">08</span></figcaption></figure>
-          </div>
-        </div>
-      </section>
+    <section class="project soft" id="system" aria-labelledby="system-title">
+      <div class="project-hero">
+        <img src="assets/photos/photo-17.jpg" alt="不同颜色的手机与磁吸卡包产品组合" loading="eager">
+        <div class="wrap project-title"><span class="project-no">01</span><h2 id="system-title">产品系统</h2><p>从单品识别到系列陈列，让功能、颜色和产品关系在同一套画面里成立。</p><div class="project-meta"><span>产品摄影</span><span>场景搭建</span><span>后期制作</span></div></div>
+      </div>
+      <div class="wrap gallery">
+        <figure class="shot span-7 land"><button type="button" data-src="assets/photos/photo-02.jpg"><img src="assets/photos/photo-02.jpg" alt="圆桌上的 3C 产品生态场景" loading="lazy"></button><figcaption><span>Device ecosystem</span><span class="count">01</span></figcaption></figure>
+        <figure class="shot span-5 square offset"><button type="button" data-src="assets/photos/photo-03.jpg"><img src="assets/photos/photo-03.jpg" alt="蓝色桌面配件与平板电脑组合" loading="lazy"></button><figcaption><span>Tabletop composition</span><span class="count">02</span></figcaption></figure>
+        <figure class="shot span-4 square"><button type="button" data-src="assets/photos/photo-05.jpg"><img src="assets/photos/photo-05.jpg" alt="紫色光线下的手机局部特写" loading="lazy"></button><figcaption><span>Material close-up</span><span class="count">03</span></figcaption></figure>
+        <div class="gallery-note"><strong>视觉重点</strong><p>建立可复用的产品视觉语言，让系列感不依赖重复构图。</p></div>
+        <figure class="shot span-4 square offset"><button type="button" data-src="assets/photos/photo-14.jpg"><img src="assets/photos/photo-14.jpg" alt="平板绘画与桌面创作场景" loading="lazy"></button><figcaption><span>Creator workflow</span><span class="count">04</span></figcaption></figure>
+        <figure class="shot span-6 land"><button type="button" data-src="assets/photos/photo-21.jpg"><img src="assets/photos/photo-21.jpg" alt="白色背景上的两款充电支架" loading="lazy"></button><figcaption><span>Clean product family</span><span class="count">05</span></figcaption></figure>
+        <figure class="shot span-6 land offset"><button type="button" data-src="assets/photos/photo-06.jpg"><img src="assets/photos/photo-06.jpg" alt="暗调环境中的触控笔与平板" loading="lazy"></button><figcaption><span>Low-key detail</span><span class="count">06</span></figcaption></figure>
+        <figure class="shot span-12 wide"><button type="button" data-src="assets/photos/photo-18.jpg"><img src="assets/photos/photo-18.jpg" alt="平板与桌面设备创作特写" loading="lazy"></button><figcaption><span>Desk detail</span><span class="count">07</span></figcaption></figure>
+      </div>
+    </section>
 
-      <section class="project dark" aria-labelledby="project-02">
-        <div class="wrap">
-          <header class="project-head"><span class="project-number">02 / 04</span><h2 id="project-02">Magnetic<br>Action</h2><p class="project-copy">用手部动作、明暗切换与局部特写，把磁吸、充电和支撑关系拍得直观。</p></header>
-          <div class="project-grid">
-            <figure class="shot span-7 ratio-land"><button type="button" data-photo="photo-08.jpg" aria-label="预览黑色充电支架"><img src="assets/photos/photo-08.jpg" alt="暗调桌面上的黑色磁吸充电支架" loading="lazy"></button><figcaption><span>Hero still</span><span class="index">01</span></figcaption></figure>
-            <figure class="shot span-5 ratio-land offset-top"><button type="button" data-photo="photo-10.jpg" aria-label="预览耳机充电盒"><img src="assets/photos/photo-10.jpg" alt="暖色光线中的无线耳机充电盒" loading="lazy"></button><figcaption><span>Charging detail</span><span class="index">02</span></figcaption></figure>
-            <figure class="shot span-6 ratio-land"><button type="button" data-photo="photo-15.jpg" aria-label="预览桌面夜景充电支架"><img src="assets/photos/photo-15.jpg" alt="夜间桌面上的横屏充电支架" loading="lazy"></button><figcaption><span>Night mode</span><span class="index">03</span></figcaption></figure>
-            <figure class="shot span-6 ratio-land offset-top"><button type="button" data-photo="photo-16.jpg" aria-label="预览白色充电支架"><img src="assets/photos/photo-16.jpg" alt="明亮场景中的白色充电支架" loading="lazy"></button><figcaption><span>Light mode</span><span class="index">04</span></figcaption></figure>
-            <figure class="shot span-6 ratio-land"><button type="button" data-photo="photo-23.jpg" aria-label="预览磁吸充电动作一"><img src="assets/photos/photo-23.jpg" alt="手持手机靠近磁吸充电盘" loading="lazy"></button><figcaption><span>Attach</span><span class="index">05</span></figcaption></figure>
-            <figure class="shot span-6 ratio-land"><button type="button" data-photo="photo-24.jpg" aria-label="预览磁吸充电动作二"><img src="assets/photos/photo-24.jpg" alt="磁吸充电盘连接手机的动作特写" loading="lazy"></button><figcaption><span>Connect</span><span class="index">06</span></figcaption></figure>
-          </div>
-        </div>
-      </section>
+    <section class="project dark" id="action" aria-labelledby="action-title">
+      <div class="project-hero">
+        <img src="assets/photos/photo-08.jpg" alt="手持手机靠近黑色磁吸充电支架" loading="lazy">
+        <div class="wrap project-title"><span class="project-no">02</span><h2 id="action-title">材质与动作</h2><p>用手部动作、明暗关系和局部特写，把磁吸、充电与收纳方式拍得直观。</p><div class="project-meta"><span>功能演示</span><span>动作捕捉</span><span>材质细节</span></div></div>
+      </div>
+      <div class="wrap gallery">
+        <figure class="shot span-5 land offset"><button type="button" data-src="assets/photos/photo-10.jpg"><img src="assets/photos/photo-10.jpg" alt="暖色光线中的无线耳机充电盒" loading="lazy"></button><figcaption><span>Charging detail</span><span class="count">01</span></figcaption></figure>
+        <figure class="shot span-7 land"><button type="button" data-src="assets/photos/photo-15.jpg"><img src="assets/photos/photo-15.jpg" alt="夜间桌面上的横屏充电支架" loading="lazy"></button><figcaption><span>Night mode</span><span class="count">02</span></figcaption></figure>
+        <figure class="shot span-6 land"><button type="button" data-src="assets/photos/photo-16.jpg"><img src="assets/photos/photo-16.jpg" alt="明亮场景中的白色充电支架" loading="lazy"></button><figcaption><span>Light mode</span><span class="count">03</span></figcaption></figure>
+        <figure class="shot span-6 land offset"><button type="button" data-src="assets/photos/photo-23.jpg"><img src="assets/photos/photo-23.jpg" alt="手持手机靠近磁吸充电盘" loading="lazy"></button><figcaption><span>Attach</span><span class="count">04</span></figcaption></figure>
+        <figure class="shot span-8 land"><button type="button" data-src="assets/photos/photo-24.jpg"><img src="assets/photos/photo-24.jpg" alt="磁吸充电盘连接手机的动作特写" loading="lazy"></button><figcaption><span>Connect</span><span class="count">05</span></figcaption></figure>
+        <div class="gallery-note"><strong>视觉重点</strong><p>动作只保留关键一帧，产品结构与使用关系同时清楚。</p></div>
+        <figure class="shot span-5 land offset"><button type="button" data-src="assets/photos/photo-01.jpg"><img src="assets/photos/photo-01.jpg" alt="人物在咖啡桌旁使用钱包" loading="lazy"></button><figcaption><span>Everyday carry</span><span class="count">06</span></figcaption></figure>
+        <figure class="shot span-7 land"><button type="button" data-src="assets/photos/photo-13.jpg"><img src="assets/photos/photo-13.jpg" alt="双手展开棕色钱包展示内部结构" loading="lazy"></button><figcaption><span>Interior detail</span><span class="count">07</span></figcaption></figure>
+      </div>
+    </section>
 
-      <section class="project blue" aria-labelledby="project-03">
-        <div class="wrap">
-          <header class="project-head"><span class="project-number">03 / 04</span><h2 id="project-03">Wallet<br>Stories</h2><p class="project-copy">用人物动作和材质细节呈现钱包卡包的尺寸、容量与日常使用感。</p></header>
-          <div class="project-grid">
-            <figure class="shot span-7 ratio-land"><button type="button" data-photo="photo-01.jpg" aria-label="预览钱包使用场景"><img src="assets/photos/photo-01.jpg" alt="人物在咖啡桌旁使用钱包" loading="lazy"></button><figcaption><span>Everyday carry</span><span class="index">01</span></figcaption></figure>
-            <figure class="shot span-5 ratio-land offset-top"><button type="button" data-photo="photo-13.jpg" aria-label="预览钱包内部结构"><img src="assets/photos/photo-13.jpg" alt="双手展开棕色钱包展示内部结构" loading="lazy"></button><figcaption><span>Interior detail</span><span class="index">02</span></figcaption></figure>
-            <figure class="shot span-12 ratio-wide"><button type="button" data-photo="photo-17.jpg" aria-label="预览钱包产品系列"><img src="assets/photos/photo-17.jpg" alt="多款钱包卡包产品陈列" loading="lazy"></button><figcaption><span>Collection study</span><span class="index">03</span></figcaption></figure>
-          </div>
-        </div>
-      </section>
-
-      <section class="project" aria-labelledby="project-04">
-        <div class="wrap">
-          <header class="project-head"><span class="project-number">04 / 04</span><h2 id="project-04">Campaign<br>Rhythm</h2><p class="project-copy">社媒内容以节日氛围、人物互动和户外环境为线索，让同一产品拥有不同传播语境。</p></header>
-          <div class="project-grid">
-            <figure class="shot span-8 ratio-land"><button type="button" data-photo="photo-07.jpg" aria-label="预览厨房生活方式场景"><img src="assets/photos/photo-07.jpg" alt="人物在厨房使用平板支架" loading="lazy"></button><figcaption><span>Lifestyle story</span><span class="index">01</span></figcaption></figure>
-            <figure class="shot span-4 ratio-tall"><button type="button" data-photo="photo-09.jpg" aria-label="预览节日社媒内容"><img src="assets/photos/photo-09.jpg" alt="圣诞氛围中的平板支架" loading="lazy"></button><figcaption><span>Holiday campaign</span><span class="index">02</span></figcaption></figure>
-            <figure class="shot span-6 ratio-land"><button type="button" data-photo="photo-11.jpg" aria-label="预览平板支架操作场景"><img src="assets/photos/photo-11.jpg" alt="人物操作橙色平板支架" loading="lazy"></button><figcaption><span>Product in action</span><span class="index">03</span></figcaption></figure>
-            <figure class="shot span-6 ratio-tall offset-top"><button type="button" data-photo="photo-12.jpg" aria-label="预览随身使用场景"><img src="assets/photos/photo-12.jpg" alt="人物将产品放入口袋的动作特写" loading="lazy"></button><figcaption><span>Portable use</span><span class="index">04</span></figcaption></figure>
-            <figure class="shot span-5 ratio-land"><button type="button" data-photo="photo-19.jpg" aria-label="预览感恩节生活方式画面"><img src="assets/photos/photo-19.jpg" alt="感恩节餐桌旁的人物与平板支架" loading="lazy"></button><figcaption><span>Seasonal content</span><span class="index">05</span></figcaption></figure>
-            <figure class="shot span-7 ratio-land"><button type="button" data-photo="photo-20.jpg" aria-label="预览紫色产品组合"><img src="assets/photos/photo-20.jpg" alt="紫色光线中的配件产品组合" loading="lazy"></button><figcaption><span>Color story</span><span class="index">06</span></figcaption></figure>
-            <figure class="shot span-12 ratio-wide"><button type="button" data-photo="photo-22.jpg" aria-label="预览户外防水产品场景"><img src="assets/photos/photo-22.jpg" alt="岩石环境中的户外防水手机产品" loading="lazy"></button><figcaption><span>Outdoor proof point</span><span class="index">07</span></figcaption></figure>
-          </div>
-        </div>
-      </section>
-    </div>
+    <section class="project" id="scene" aria-labelledby="scene-title">
+      <div class="project-hero">
+        <img src="assets/photos/photo-22.jpg" alt="岩石环境中的户外防水手机产品" loading="lazy">
+        <div class="wrap project-title"><span class="project-no">03</span><h2 id="scene-title">场景叙事</h2><p>把产品放回真实环境，用人物、季节与空间传达它的使用价值。</p><div class="project-meta"><span>生活方式</span><span>户外场景</span><span>社媒内容</span></div></div>
+      </div>
+      <div class="wrap gallery">
+        <figure class="shot span-8 land"><button type="button" data-src="assets/photos/photo-07.jpg"><img src="assets/photos/photo-07.jpg" alt="人物在厨房使用平板支架" loading="lazy"></button><figcaption><span>Lifestyle story</span><span class="count">01</span></figcaption></figure>
+        <figure class="shot span-4 tall"><button type="button" data-src="assets/photos/photo-09.jpg"><img src="assets/photos/photo-09.jpg" alt="圣诞氛围中的平板支架" loading="lazy"></button><figcaption><span>Holiday campaign</span><span class="count">02</span></figcaption></figure>
+        <figure class="shot span-6 land"><button type="button" data-src="assets/photos/photo-11.jpg"><img src="assets/photos/photo-11.jpg" alt="人物操作橙色平板支架" loading="lazy"></button><figcaption><span>Product in action</span><span class="count">03</span></figcaption></figure>
+        <figure class="shot span-6 tall offset"><button type="button" data-src="assets/photos/photo-12.jpg"><img src="assets/photos/photo-12.jpg" alt="人物将产品放入口袋的动作特写" loading="lazy"></button><figcaption><span>Portable use</span><span class="count">04</span></figcaption></figure>
+        <figure class="shot span-5 land"><button type="button" data-src="assets/photos/photo-19.jpg"><img src="assets/photos/photo-19.jpg" alt="节日餐桌旁的人物与平板支架" loading="lazy"></button><figcaption><span>Seasonal content</span><span class="count">05</span></figcaption></figure>
+        <figure class="shot span-7 land"><button type="button" data-src="assets/photos/photo-20.jpg"><img src="assets/photos/photo-20.jpg" alt="紫色光线中的配件产品组合" loading="lazy"></button><figcaption><span>Color story</span><span class="count">06</span></figcaption></figure>
+        <figure class="shot span-12 wide"><button type="button" data-src="assets/photos/photo-04.jpg"><img src="assets/photos/photo-04.jpg" alt="居家工作空间里的充电产品" loading="lazy"></button><figcaption><span>Work from home</span><span class="count">07</span></figcaption></figure>
+      </div>
+    </section>
 
     <section class="deck" id="deck" aria-labelledby="deck-title">
       <div class="wrap">
-        <header class="deck-head">
-          <div><h2 id="deck-title">完整作品册</h2><p class="deck-copy">17 页横向视觉叙事，左右滑动查看，点击可放大。</p></div>
-          <div class="deck-controls" aria-label="作品册翻页"><button class="deck-control" id="deck-prev" type="button" aria-label="上一页">‹</button><button class="deck-control" id="deck-next" type="button" aria-label="下一页">›</button></div>
-        </header>
+        <header class="section-head"><div><h2 id="deck-title">影像索引</h2><p>保留现有 17 页作品册，横向浏览完整视觉节奏。</p></div><div class="deck-controls"><button class="icon-button" id="deck-prev" type="button" aria-label="上一页">‹</button><button class="icon-button" id="deck-next" type="button" aria-label="下一页">›</button></div></header>
         <div class="slides" id="slides"></div>
       </div>
     </section>
 
-    <section class="profile" id="profile" aria-labelledby="profile-title">
-      <div class="wrap profile-grid">
-        <h2 id="profile-title">商业产品摄影与电商视觉执行。</h2>
-        <div class="profile-copy">
-          <p>围绕产品定位、用户场景、材质质感、构图留白与平台比例组织拍摄，适配 Amazon、电商详情、品牌发布与社媒内容。</p>
-          <div class="profile-list" aria-label="适合方向"><span>商业产品摄影</span><span>Amazon / 电商视觉</span><span>3C 配件与小物件</span><span>社媒 Campaign</span></div>
-        </div>
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <h2 id="about-title">为产品建立清楚、可信的视觉表达。</h2>
+        <div class="about-copy"><p>围绕产品定位、功能卖点、材质质感与使用场景组织拍摄，适配电商详情、品牌发布和社媒内容。作品集会随新项目持续更新。</p><div class="services"><span>商业产品摄影</span><span>电商视觉</span><span>3C 配件与小物件</span><span>动态影像</span></div><div class="update">Portfolio in progress / 2026</div></div>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="wrap footer-inner"><span>LIU BOYANG / SHEEP</span><span>仅供作品浏览 · © 2026</span></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><span>刘伯阳 / SHEEP</span><span>仅供作品浏览 · © 2026</span></div></footer>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览" aria-hidden="true">
     <button class="close" type="button" aria-label="关闭预览">×</button>
+    <button class="lightbox-control lightbox-prev" type="button" aria-label="上一张">‹</button>
     <img alt="">
+    <button class="lightbox-control lightbox-next" type="button" aria-label="下一张">›</button>
   </div>
 
   <script>
     const lightbox = document.querySelector("#lightbox");
-    const lightboxImg = lightbox.querySelector("img");
+    const lightboxImage = lightbox.querySelector("img");
     const closeButton = lightbox.querySelector(".close");
+    const photoButtons = [...document.querySelectorAll("[data-src]")];
     const slides = document.querySelector("#slides");
+    let gallery = [];
+    let activeIndex = 0;
 
-    function openLightbox(src, alt) {
-      lightboxImg.src = src;
-      lightboxImg.alt = alt;
+    function openLightbox(items, index) {
+      gallery = items;
+      activeIndex = index;
+      const item = gallery[activeIndex];
+      lightboxImage.src = item.src;
+      lightboxImage.alt = item.alt;
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("locked");
@@ -432,31 +309,44 @@
     function closeLightbox() {
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden", "true");
-      lightboxImg.removeAttribute("src");
+      lightboxImage.removeAttribute("src");
       document.body.classList.remove("locked");
     }
 
-    document.querySelectorAll("[data-photo]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const image = button.querySelector("img");
-        openLightbox(`assets/photos/${button.dataset.photo}`, image.alt);
-      });
-    });
+    function stepLightbox(direction) {
+      activeIndex = (activeIndex + direction + gallery.length) % gallery.length;
+      const item = gallery[activeIndex];
+      lightboxImage.src = item.src;
+      lightboxImage.alt = item.alt;
+    }
 
+    const photos = photoButtons.map((button) => ({ src: button.dataset.src, alt: button.querySelector("img").alt }));
+    photoButtons.forEach((button, index) => button.addEventListener("click", () => openLightbox(photos, index)));
+
+    const slideItems = [];
     for (let i = 1; i <= 17; i += 1) {
-      const n = String(i).padStart(2, "0");
+      const number = String(i).padStart(2, "0");
       const item = document.createElement("figure");
+      const slide = { src: `assets/slides/slide-${number}.jpg`, alt: `作品册第 ${i} 页` };
+      slideItems.push(slide);
       item.className = "slide";
-      item.innerHTML = `<button type="button" aria-label="预览作品册第 ${i} 页"><img src="assets/slides/slide-${n}.jpg" alt="作品册第 ${i} 页" loading="${i < 3 ? "eager" : "lazy"}"></button><figcaption>Portfolio page ${String(i).padStart(2, "0")} / 17</figcaption>`;
-      item.querySelector("button").addEventListener("click", () => openLightbox(`assets/slides/slide-${n}.jpg`, `作品册第 ${i} 页`));
+      item.innerHTML = `<button type="button" aria-label="预览作品册第 ${i} 页"><img src="${slide.src}" alt="${slide.alt}" loading="${i < 3 ? "eager" : "lazy"}"></button><figcaption>PORTFOLIO PAGE ${number} / 17</figcaption>`;
+      item.querySelector("button").addEventListener("click", () => openLightbox(slideItems, i - 1));
       slides.appendChild(item);
     }
 
-    document.querySelector("#deck-prev").addEventListener("click", () => slides.scrollBy({ left: -slides.clientWidth * .72, behavior: "smooth" }));
-    document.querySelector("#deck-next").addEventListener("click", () => slides.scrollBy({ left: slides.clientWidth * .72, behavior: "smooth" }));
+    document.querySelector("#deck-prev").addEventListener("click", () => slides.scrollBy({ left: -slides.clientWidth * .75, behavior: "smooth" }));
+    document.querySelector("#deck-next").addEventListener("click", () => slides.scrollBy({ left: slides.clientWidth * .75, behavior: "smooth" }));
+    lightbox.querySelector(".lightbox-prev").addEventListener("click", () => stepLightbox(-1));
+    lightbox.querySelector(".lightbox-next").addEventListener("click", () => stepLightbox(1));
     closeButton.addEventListener("click", closeLightbox);
     lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
-    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeLightbox(); });
+    document.addEventListener("keydown", (event) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") stepLightbox(-1);
+      if (event.key === "ArrowRight") stepLightbox(1);
+    });
     document.addEventListener("contextmenu", (event) => event.preventDefault());
     document.addEventListener("dragstart", (event) => event.preventDefault());
   </script>
