@@ -169,6 +169,40 @@
         block.tabIndex = 0;
         block.setAttribute("role", "region");
         block.setAttribute("aria-label", `${item.title}图片组`);
+        const controls = element("div", "mobile-swipe-controls");
+        const count = element("span");
+        const previous = element("button", null, "←");
+        const next = element("button", null, "→");
+        previous.type = next.type = "button";
+        previous.setAttribute("aria-label", "上一张");
+        next.setAttribute("aria-label", "下一张");
+        controls.append(count, previous, next);
+        function active() {
+          const shots = [...block.querySelectorAll(".edition-shot")];
+          const left = block.getBoundingClientRect().left;
+          return shots.reduce((best, shot, position) =>
+            Math.abs(shot.getBoundingClientRect().left - left) < Math.abs(shots[best].getBoundingClientRect().left - left) ? position : best, 0);
+        }
+        function update() {
+          const position = active();
+          count.textContent = `${String(position + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
+          previous.disabled = position === 0;
+          next.disabled = position === photos.length - 1;
+        }
+        function move(direction) {
+          const shot = block.querySelectorAll(".edition-shot")[Math.max(0, Math.min(photos.length - 1, active() + direction))];
+          if (shot) block.scrollTo({ left: shot.offsetLeft - block.offsetLeft, behavior: reduced.matches ? "auto" : "smooth" });
+        }
+        previous.addEventListener("click", () => move(-1));
+        next.addEventListener("click", () => move(1));
+        block.addEventListener("scroll", update, { passive: true });
+        block.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+          event.preventDefault();
+          move(event.key === "ArrowRight" ? 1 : -1);
+        });
+        block.append(controls);
+        requestAnimationFrame(update);
       }
       if (photos.length > 1) block.style.gridTemplateColumns = photos.map((photo) => `${photo.width / photo.height}fr`).join(" ");
       photos.forEach((photo) => block.append(photoFigure(photo)));
