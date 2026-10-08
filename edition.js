@@ -78,7 +78,7 @@
   }
 
   function photoFigure(photo) {
-    const figure = element("figure", "edition-shot");
+    const figure = element("figure", `edition-shot ${photo.width / photo.height < .85 ? "is-tall" : ""}`);
     figure.dataset.photoId = photo.id;
     const open = element("button", "shot-open");
     open.type = "button";
