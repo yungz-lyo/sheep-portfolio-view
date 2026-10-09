@@ -162,13 +162,15 @@
         return;
       }
       const block = element("div", `edition-spread enter ${photos.length === 1 ? "is-single" : ""} ${position === 0 ? "is-cover" : ""}`);
+      let track = block;
       if (photos.length === 1 && photos[0].width / photos[0].height < .85) block.classList.add("is-portrait");
       if (photos.length === 2 && photos.every((photo) => photo.width / photo.height < .9)) block.classList.add("mobile-pair");
       else if (photos.length > 1) {
         block.classList.add("mobile-swipe");
-        block.tabIndex = 0;
-        block.setAttribute("role", "region");
-        block.setAttribute("aria-label", `${item.title}图片组`);
+        track = element("div", "mobile-swipe-track");
+        track.tabIndex = 0;
+        track.setAttribute("role", "region");
+        track.setAttribute("aria-label", `${item.title}图片组`);
         const controls = element("div", "mobile-swipe-controls");
         const count = element("span");
         const previous = element("button", null, "←");
@@ -178,8 +180,8 @@
         next.setAttribute("aria-label", "下一张");
         controls.append(count, previous, next);
         function active() {
-          const shots = [...block.querySelectorAll(".edition-shot")];
-          const left = block.getBoundingClientRect().left;
+          const shots = [...track.querySelectorAll(".edition-shot")];
+          const left = track.getBoundingClientRect().left;
           return shots.reduce((best, shot, position) =>
             Math.abs(shot.getBoundingClientRect().left - left) < Math.abs(shots[best].getBoundingClientRect().left - left) ? position : best, 0);
         }
@@ -190,22 +192,22 @@
           next.disabled = position === photos.length - 1;
         }
         function move(direction) {
-          const shot = block.querySelectorAll(".edition-shot")[Math.max(0, Math.min(photos.length - 1, active() + direction))];
-          if (shot) block.scrollTo({ left: shot.offsetLeft - block.offsetLeft, behavior: reduced.matches ? "auto" : "smooth" });
+          const shot = track.querySelectorAll(".edition-shot")[Math.max(0, Math.min(photos.length - 1, active() + direction))];
+          if (shot) track.scrollTo({ left: shot.offsetLeft - track.offsetLeft, behavior: reduced.matches ? "auto" : "smooth" });
         }
         previous.addEventListener("click", () => move(-1));
         next.addEventListener("click", () => move(1));
-        block.addEventListener("scroll", update, { passive: true });
-        block.addEventListener("keydown", (event) => {
+        track.addEventListener("scroll", update, { passive: true });
+        track.addEventListener("keydown", (event) => {
           if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
           event.preventDefault();
           move(event.key === "ArrowRight" ? 1 : -1);
         });
-        block.append(controls);
+        block.append(controls, track);
         requestAnimationFrame(update);
       }
-      if (photos.length > 1) block.style.gridTemplateColumns = photos.map((photo) => `${photo.width / photo.height}fr`).join(" ");
-      photos.forEach((photo) => block.append(photoFigure(photo)));
+      if (photos.length > 1) track.style.gridTemplateColumns = photos.map((photo) => `${photo.width / photo.height}fr`).join(" ");
+      photos.forEach((photo) => track.append(photoFigure(photo)));
       fragment.append(block);
     });
     if (!fragment.childNodes.length) fragment.append(element("p", "empty-project", "这一组暂时没有保留的图片。"));

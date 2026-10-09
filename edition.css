@@ -78,6 +78,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
 .edition-spread.is-single { grid-template-columns: 1fr; }
 .edition-spread.is-portrait { width: min(70%,700px); margin-inline: auto; }
 .edition-spread.is-carousel { display: block; }
+.edition-spread.mobile-swipe { display: block; }
+.mobile-swipe-track { display: grid; align-items: start; gap: 18px; }
 .spread-rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; padding-bottom: 12px; cursor: grab; }
 .spread-rail.is-dragging { scroll-snap-type: none; user-select: none; cursor: grabbing; }
 .spread-rail .edition-shot { flex: 0 0 min(65vw,690px); scroll-snap-align: start; }
@@ -169,10 +171,10 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
   .edition-spread.is-portrait { width: 100%; }
   .edition-spread.is-carousel { display: block; }
   .edition-spread.mobile-pair { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 9px; }
-  .edition-spread.mobile-swipe { position: relative; display: flex; align-items: flex-start; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 52px 0 8px; }
-  .edition-spread.mobile-swipe::-webkit-scrollbar, .spread-rail::-webkit-scrollbar { display: none; }
-  .edition-spread.mobile-swipe .edition-shot { flex: 0 0 88%; scroll-snap-align: start; }
-  .mobile-swipe-controls { position: sticky; left: 0; top: 0; display: flex; align-items: center; gap: 6px; flex: 0 0 100%; height: 44px; margin-top: -52px; margin-right: -100%; border-top: 1px solid var(--line); background: var(--paper); z-index: 1; font-size: 12px; font-weight: 700; }
+  .mobile-swipe-track { display: flex; align-items: flex-start; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 8px; }
+  .mobile-swipe-track::-webkit-scrollbar, .spread-rail::-webkit-scrollbar { display: none; }
+  .mobile-swipe-track .edition-shot { flex: 0 0 88%; scroll-snap-align: start; }
+  .mobile-swipe-controls { display: flex; align-items: center; gap: 6px; height: 44px; margin-bottom: 12px; border-top: 1px solid var(--line); background: var(--paper); font-size: 12px; font-weight: 700; }
   .mobile-swipe-controls span { margin-right: auto; }
   .mobile-swipe-controls button { width: 44px; height: 44px; border: 1px solid var(--ink); background: white; color: var(--ink); font-size: 20px; }
   .mobile-swipe-controls button:disabled { opacity: .35; }
