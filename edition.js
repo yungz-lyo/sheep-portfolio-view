@@ -45,6 +45,10 @@
     return image;
   }
 
+  function sizeMobileRail(rail, shot) {
+    rail.style.height = innerWidth <= 650 && shot ? `${Math.ceil(shot.getBoundingClientRect().height + 8)}px` : "";
+  }
+
   function renderIndex() {
     const fragment = document.createDocumentFragment();
     data.projects.forEach((item) => {
@@ -126,6 +130,7 @@
       count.textContent = `${String(position + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
       previous.disabled = position === 0;
       next.disabled = position === photos.length - 1;
+      sizeMobileRail(rail, rail.children[position]);
     }
     function move(direction) {
       const target = rail.children[Math.max(0, Math.min(photos.length - 1, active() + direction))];
@@ -190,6 +195,7 @@
           count.textContent = `${String(position + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
           previous.disabled = position === 0;
           next.disabled = position === photos.length - 1;
+          sizeMobileRail(track, track.querySelectorAll(".edition-shot")[position]);
         }
         function move(direction) {
           const shot = track.querySelectorAll(".edition-shot")[Math.max(0, Math.min(photos.length - 1, active() + direction))];
@@ -305,7 +311,10 @@
     pending = true;
     requestAnimationFrame(updateScroll);
   }, { passive: true });
-  addEventListener("resize", updateScroll, { passive: true });
+  addEventListener("resize", () => {
+    updateScroll();
+    gallery.querySelectorAll(".mobile-swipe-track, .spread-rail").forEach((rail) => rail.dispatchEvent(new Event("scroll")));
+  }, { passive: true });
 
   renderIndex();
   route();
