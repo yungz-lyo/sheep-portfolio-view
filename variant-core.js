@@ -116,21 +116,26 @@
   function mobileGroups(project) {
     const [lead, ...rows] = groups(project);
     if (!lead) return [];
-    const runs = [];
-    let run = [];
+    const photos = rows.flat();
+    const boundaries = new Set();
+    let offset = 0;
     rows.forEach((row) => {
-      const toneBreak = run.length && row[0].warmth - run[run.length - 1].warmth > 14;
-      if (run.length >= 5 && (run.length + row.length > 8 || toneBreak)) {
-        runs.push(run);
-        run = [];
-      }
-      run.push(...row);
+      offset += row.length;
+      boundaries.add(offset);
     });
-    if (run.length) runs.push(run);
-    if (runs.length > 1 && runs[runs.length - 1].length < 4) {
-      runs[runs.length - 2].push(...runs.pop());
+    const best = Array(photos.length + 1);
+    best[photos.length] = { cost: 0, runs: [] };
+    const sizeCost = [0, 8, 3, 0, .8, 1.7];
+    for (let start = photos.length - 1; start >= 0; start -= 1) {
+      for (let size = 1; size <= 5 && start + size <= photos.length; size += 1) {
+        const end = start + size;
+        const cost = sizeCost[size] + (end < photos.length && !boundaries.has(end) ? 2 : 0) + best[end].cost;
+        if (!best[start] || cost < best[start].cost) {
+          best[start] = { cost, runs: [photos.slice(start, end), ...best[end].runs] };
+        }
+      }
     }
-    return [lead, ...runs];
+    return [lead, ...best[0].runs];
   }
 
   function remove(id) {
