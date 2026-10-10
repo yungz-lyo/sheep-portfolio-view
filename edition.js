@@ -173,7 +173,7 @@
         fragment.append(carousel(photos));
         return;
       }
-      if (photos.length > 4) {
+      if (photos.length >= 4) {
         fragment.append(carousel(photos));
         return;
       }
