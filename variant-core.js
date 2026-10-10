@@ -113,6 +113,26 @@
     return [[lead], ...arranged];
   }
 
+  function mobileGroups(project) {
+    const [lead, ...rows] = groups(project);
+    if (!lead) return [];
+    const runs = [];
+    let run = [];
+    rows.forEach((row) => {
+      const toneBreak = run.length && row[0].warmth - run[run.length - 1].warmth > 14;
+      if (run.length >= 5 && (run.length + row.length > 8 || toneBreak)) {
+        runs.push(run);
+        run = [];
+      }
+      run.push(...row);
+    });
+    if (run.length) runs.push(run);
+    if (runs.length > 1 && runs[runs.length - 1].length < 4) {
+      runs[runs.length - 2].push(...runs.pop());
+    }
+    return [lead, ...runs];
+  }
+
   function remove(id) {
     if (publicView || !photoById.has(id)) return;
     removed.add(id);
@@ -162,5 +182,5 @@
   });
 
   window.SheepPortfolio = { projects, archive, projectById, photoById, hero,
-    visible, cover, caption, groups, remove, dragRail, get removed() { return removed; } };
+    visible, cover, caption, groups, mobileGroups, remove, dragRail, get removed() { return removed; } };
 })();

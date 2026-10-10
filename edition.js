@@ -9,6 +9,7 @@
   const editButton = document.querySelector("#edition-edit");
   const publicView = document.body.classList.contains("public-view");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  const mobileLayout = matchMedia("(max-width: 650px)");
   const observer = "IntersectionObserver" in window && !reduced.matches
     ? new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -150,6 +151,23 @@
     return block;
   }
 
+  function mobileRun(photos) {
+    const block = element("div", "mobile-run enter");
+    for (let i = 0; i < photos.length; i += 1) {
+      const photo = photos[i];
+      const next = photos[i + 1];
+      if (next && photo.width / photo.height < .85 && next.width / next.height < .85) {
+        const pair = element("div", "mobile-run-pair");
+        pair.append(photoFigure(photo), photoFigure(next));
+        block.append(pair);
+        i += 1;
+      } else {
+        block.append(photoFigure(photo));
+      }
+    }
+    return block;
+  }
+
   function renderDetail(item) {
     project = item;
     document.querySelector("#detail-number").textContent = `${item.number} / 06`;
@@ -161,7 +179,12 @@
     nextLink.href = `#project/${next.id}`;
     nextLink.textContent = `${next.title}  →`;
     const fragment = document.createDocumentFragment();
-    data.groups(item).forEach((photos, position) => {
+    const groups = mobileLayout.matches ? data.mobileGroups(item) : data.groups(item);
+    groups.forEach((photos, position) => {
+      if (mobileLayout.matches && position > 0) {
+        fragment.append(mobileRun(photos));
+        return;
+      }
       if (photos.length > 4) {
         fragment.append(carousel(photos));
         return;
@@ -293,6 +316,7 @@
     if (project) renderDetail(project);
   });
   addEventListener("hashchange", route);
+  mobileLayout.addEventListener("change", () => { if (project) renderDetail(project); });
 
   const scrollLine = document.querySelector(".scroll-line");
   const heroImage = document.querySelector(".edition-hero > img");

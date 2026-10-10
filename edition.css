@@ -167,6 +167,9 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
   .detail-meta { margin-top: 18px; }
   .detail-meta p { margin-bottom: 10px; font-size: 15px; }
   .edition-gallery { gap: 28px; padding-bottom: 50px; }
+  .mobile-run { display: grid; gap: 16px; }
+  .mobile-run-pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: start; gap: 8px; }
+  .mobile-run .edition-shot figcaption { margin-top: 6px; padding-top: 6px; }
   .edition-spread { grid-template-columns: 1fr !important; gap: 22px; }
   .edition-spread.is-portrait { width: 100%; }
   .edition-spread.is-carousel { display: block; }
