@@ -115,6 +115,10 @@
     buttons.append(previous, next);
     bar.append(count, buttons);
     const rail = element("div", "spread-rail");
+    const progress = element("div", "spread-progress");
+    const progressFill = element("span");
+    progress.setAttribute("aria-hidden", "true");
+    progress.append(progressFill);
     rail.tabIndex = 0;
     rail.setAttribute("role", "region");
     rail.setAttribute("aria-label", "图片轮播");
@@ -131,6 +135,7 @@
       count.textContent = `${String(position + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
       previous.disabled = position === 0;
       next.disabled = position === photos.length - 1;
+      progressFill.style.width = `${(position + 1) / photos.length * 100}%`;
       sizeMobileRail(rail, rail.children[position]);
     }
     function move(direction) {
@@ -146,25 +151,8 @@
       event.preventDefault();
       move(event.key === "ArrowRight" ? 1 : -1);
     });
-    block.append(bar, rail);
+    block.append(bar, rail, progress);
     requestAnimationFrame(update);
-    return block;
-  }
-
-  function mobileRun(photos) {
-    const block = element("div", "mobile-run enter");
-    for (let i = 0; i < photos.length; i += 1) {
-      const photo = photos[i];
-      const next = photos[i + 1];
-      if (next && photo.width / photo.height < .85 && next.width / next.height < .85) {
-        const pair = element("div", "mobile-run-pair");
-        pair.append(photoFigure(photo), photoFigure(next));
-        block.append(pair);
-        i += 1;
-      } else {
-        block.append(photoFigure(photo));
-      }
-    }
     return block;
   }
 
@@ -182,7 +170,7 @@
     const groups = mobileLayout.matches ? data.mobileGroups(item) : data.groups(item);
     groups.forEach((photos, position) => {
       if (mobileLayout.matches && position > 0) {
-        fragment.append(mobileRun(photos));
+        fragment.append(carousel(photos));
         return;
       }
       if (photos.length > 4) {
