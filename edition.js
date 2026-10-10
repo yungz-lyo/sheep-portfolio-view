@@ -167,13 +167,13 @@
     nextLink.href = `#project/${next.id}`;
     nextLink.textContent = `${next.title}  →`;
     const fragment = document.createDocumentFragment();
-    const groups = mobileLayout.matches ? data.mobileGroups(item) : data.groups(item);
+    const groups = mobileLayout.matches ? data.mobileGroups(item) : data.desktopGroups(item);
     groups.forEach((photos, position) => {
       if (mobileLayout.matches && position > 0) {
         fragment.append(carousel(photos));
         return;
       }
-      if (photos.length >= 4) {
+      if (photos.length >= 4 || (photos.length === 3 && data.closeInTone(photos))) {
         fragment.append(carousel(photos));
         return;
       }

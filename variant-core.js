@@ -113,6 +113,26 @@
     return [[lead], ...arranged];
   }
 
+  function closeInTone(photos) {
+    return photos.every((a) => photos.every((b) =>
+      Math.abs(a.warmth - b.warmth) * .8
+      + Math.abs(a.lightness - b.lightness) * .35
+      + Math.abs(a.saturation - b.saturation) * .2 <= 23));
+  }
+
+  function desktopGroups(project) {
+    const [lead, ...rows] = groups(project);
+    if (!lead) return [];
+    const spreads = [lead];
+    for (let i = 0; i < rows.length; i += 1) {
+      const pair = rows[i + 1] && [...rows[i], ...rows[i + 1]];
+      const merge = pair && pair.length <= 5 && closeInTone(pair);
+      spreads.push(merge ? pair : rows[i]);
+      if (merge) i += 1;
+    }
+    return spreads;
+  }
+
   function mobileGroups(project) {
     const [lead, ...rows] = groups(project);
     if (!lead) return [];
@@ -187,5 +207,6 @@
   });
 
   window.SheepPortfolio = { projects, archive, projectById, photoById, hero,
-    visible, cover, caption, groups, mobileGroups, remove, dragRail, get removed() { return removed; } };
+    visible, cover, caption, groups, desktopGroups, mobileGroups, closeInTone,
+    remove, dragRail, get removed() { return removed; } };
 })();
