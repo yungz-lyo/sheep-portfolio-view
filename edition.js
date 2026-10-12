@@ -50,6 +50,16 @@
     rail.style.height = innerWidth <= 650 && shot ? `${Math.ceil(shot.getBoundingClientRect().height + 8)}px` : "";
   }
 
+  function sizeDesktopRail(rail, photos) {
+    if (mobileLayout.matches || !rail.clientWidth || rail.dataset.sizedWidth === String(rail.clientWidth)) return;
+    const ratios = photos.map((photo) => photo.width / photo.height);
+    const total = ratios.reduce((sum, ratio) => sum + ratio, 0);
+    const height = Math.min(900, Math.max(620, (rail.clientWidth * 1.18 - (photos.length - 1) * 16) / total),
+      rail.clientWidth / Math.max(...ratios));
+    rail.style.setProperty("--carousel-height", `${Math.round(height)}px`);
+    rail.dataset.sizedWidth = String(rail.clientWidth);
+  }
+
   function renderIndex() {
     const fragment = document.createDocumentFragment();
     data.projects.forEach((item) => {
@@ -131,6 +141,7 @@
         Math.abs(child.getBoundingClientRect().left - left) < Math.abs(children[best].getBoundingClientRect().left - left) ? position : best, 0);
     }
     function update() {
+      sizeDesktopRail(rail, photos);
       const position = active();
       count.textContent = `${String(position + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
       previous.disabled = position === 0;

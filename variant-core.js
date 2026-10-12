@@ -2,7 +2,7 @@
   const projects = window.PORTFOLIO_PROJECTS || [];
   const projectById = new Map(projects.map((project) => [project.id, project]));
   const archive = (window.PORTFOLIO_ARCHIVE || []).filter((photo) =>
-    projectById.has(photo.category) && photo.id !== "select-72");
+    projectById.has(photo.category) && photo.id !== "select-72" && photo.id !== "pick-32");
   const photoById = new Map(archive.map((photo) => [photo.id, photo]));
   const storageKey = "sheep-portfolio-removals-v1";
   const hero = "assets/portfolio/select-14.webp";
@@ -18,7 +18,10 @@
     ],
     "cat-space": [
       ["pick-53", "pick-57"],
-      ["pick-28", "pick-30", "pick-31", "pick-32", "pick-37"],
+      ["pick-28", "pick-30", "pick-31", "pick-37"],
+    ],
+    feeding: [
+      ["pick-48", "pick-16", "pick-47", "pick-01"],
     ],
     grooming: [
       ["pick-10", "pick-41", "pick-39"],
@@ -105,7 +108,11 @@
       }
       arranged.push(group);
     }
-    arranged.sort((a, b) => a[0].warmth - b[0].warmth || a[0].lightness - b[0].lightness);
+    const tone = (row, key) => row.reduce((total, photo) => total + photo[key], 0) / row.length;
+    arranged.sort((a, b) => tone(a, "warmth") - tone(b, "warmth")
+      || tone(a, "lightness") - tone(b, "lightness"));
+    if (arranged.length > 1 && Math.abs(lead.warmth - tone(arranged[0], "warmth"))
+      > Math.abs(lead.warmth - tone(arranged[arranged.length - 1], "warmth"))) arranged.reverse();
     if (project.id === "feeding") {
       const group = arranged.find((row) => row.some((photo) => photo.id === "pick-48"));
       if (group) group.sort((a, b) => Number(b.id === "pick-48") - Number(a.id === "pick-48"));
