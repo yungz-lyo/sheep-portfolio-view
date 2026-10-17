@@ -10,22 +10,29 @@ window.SHEEP_LAYOUT = {
     "pick-73",
     "pick-59",
     "pick-33",
-    "select-32"
+    "select-32",
+    "select-74",
+    "select-73",
+    "select-78",
+    "select-85",
+    "pick-42",
+    "pick-27",
+    "select-39",
+    "select-38",
+    "select-27",
+    "select-59",
+    "select-02",
+    "select-33",
+    "select-15"
   ],
   "desktop": {
     "social": [
       {
         "ids": [
-          "select-64"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
-          "select-74",
+          "select-64",
           "select-75"
         ],
-        "layout": "carousel"
+        "layout": null
       },
       {
         "ids": [
@@ -36,23 +43,10 @@ window.SHEEP_LAYOUT = {
       },
       {
         "ids": [
-          "select-78",
-          "select-73",
-          "select-85"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
-          "select-71",
-          "select-77"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
+          "select-77",
           "select-89",
-          "select-80"
+          "select-80",
+          "select-71"
         ],
         "layout": null
       },
@@ -74,14 +68,14 @@ window.SHEEP_LAYOUT = {
       {
         "ids": [
           "select-84",
-          "select-70"
+          "select-65"
         ],
         "layout": null
       },
       {
         "ids": [
           "select-66",
-          "select-65"
+          "select-70"
         ],
         "layout": null
       },
@@ -225,9 +219,7 @@ window.SHEEP_LAYOUT = {
         "ids": [
           "pick-25",
           "pick-24",
-          "pick-42",
-          "pick-51",
-          "pick-27"
+          "pick-51"
         ],
         "layout": null
       },
@@ -251,10 +243,10 @@ window.SHEEP_LAYOUT = {
       },
       {
         "ids": [
+          "pick-08",
           "pick-50",
           "pick-26",
-          "pick-05",
-          "pick-08"
+          "pick-05"
         ],
         "layout": null
       },
@@ -270,25 +262,22 @@ window.SHEEP_LAYOUT = {
     "devices": [
       {
         "ids": [
-          "select-43"
+          "select-67"
         ],
         "layout": null
       },
       {
         "ids": [
-          "select-39",
-          "select-33",
-          "select-19",
-          "select-53"
+          "select-16",
+          "select-44"
         ],
         "layout": null
       },
       {
         "ids": [
-          "select-20",
-          "select-56",
-          "select-50",
-          "select-40"
+          "select-45",
+          "select-46",
+          "select-26"
         ],
         "layout": null
       },
@@ -300,59 +289,40 @@ window.SHEEP_LAYOUT = {
       },
       {
         "ids": [
-          "select-16",
-          "select-67",
-          "select-45"
+          "select-19",
+          "select-53"
         ],
         "layout": null
       },
       {
         "ids": [
-          "select-44",
-          "select-46"
+          "select-56",
+          "select-50",
+          "select-40",
+          "select-28"
         ],
         "layout": null
       },
       {
         "ids": [
-          "select-61",
-          "select-35"
+          "select-20",
+          "select-51",
+          "select-41"
         ],
         "layout": null
       },
       {
         "ids": [
-          "select-59",
-          "select-27",
-          "select-17"
+          "select-18",
+          "select-43"
         ],
         "layout": null
       },
       {
         "ids": [
-          "select-37",
-          "select-36"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
-          "select-04"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
-          "select-38",
-          "select-55"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
-          "select-29",
-          "select-54",
-          "select-22"
+          "select-04",
+          "select-03",
+          "select-24"
         ],
         "layout": null
       },
@@ -366,22 +336,32 @@ window.SHEEP_LAYOUT = {
       },
       {
         "ids": [
+          "select-37",
+          "select-36",
+          "select-61"
+        ],
+        "layout": null
+      },
+      {
+        "ids": [
+          "select-35",
+          "select-17"
+        ],
+        "layout": null
+      },
+      {
+        "ids": [
+          "select-54",
+          "select-22",
+          "select-55",
+          "select-29"
+        ],
+        "layout": null
+      },
+      {
+        "ids": [
           "select-68",
           "select-49"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
-          "select-03",
-          "select-24"
-        ],
-        "layout": null
-      },
-      {
-        "ids": [
-          "select-51",
-          "select-41"
         ],
         "layout": null
       },
@@ -395,23 +375,48 @@ window.SHEEP_LAYOUT = {
       {
         "ids": [
           "select-21",
-          "select-60",
           "select-48",
+          "select-60",
           "select-47"
         ],
         "layout": null
-      },
+      }
+    ],
+    "wallets": [
       {
         "ids": [
-          "select-18",
-          "select-02"
+          "select-42"
         ],
         "layout": null
       },
       {
         "ids": [
-          "select-26",
-          "select-28"
+          "select-05",
+          "select-30"
+        ],
+        "layout": null
+      },
+      {
+        "ids": [
+          "select-07",
+          "select-13",
+          "select-31"
+        ],
+        "layout": null
+      },
+      {
+        "ids": [
+          "select-08",
+          "select-12",
+          "select-11"
+        ],
+        "layout": null
+      },
+      {
+        "ids": [
+          "select-06",
+          "select-25",
+          "select-10"
         ],
         "layout": null
       }

@@ -1,1 +1,1 @@
-window.SHEEP_EXCLUDED_IDS = ["pick-72","pick-71","pick-35","select-69","select-87","select-63","pick-73","pick-59","pick-33","select-32"];
+window.SHEEP_EXCLUDED_IDS = ["pick-72","pick-71","pick-35","select-69","select-87","select-63","pick-73","pick-59","pick-33","select-32","select-74","select-73","select-78","select-85","pick-42","pick-27","select-39","select-38","select-27","select-59","select-02","select-33","select-15"];
