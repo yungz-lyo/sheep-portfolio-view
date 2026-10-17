@@ -177,7 +177,7 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
   .project-more { margin: 0; padding-top: 12px; font-size: 13px; }
   .project-main, .project-link:nth-child(even) .project-main { grid-column: 1; grid-row: 2; order: 0; aspect-ratio: 1.15; }
   .project-side { display: block; grid-column: 2; grid-row: 2; aspect-ratio: .62; max-height: none; }
-  .project-link.is-single-cover .project-main { grid-column: 1 / -1; }
+  .project-link.is-single-cover .project-main { grid-column: 1 / -1; aspect-ratio: auto; align-self: start; }
   .project-link.is-single-cover, .project-link.is-single-cover:nth-child(even) { grid-template-columns: minmax(0,1fr); }
   .project-link.is-device-pair { grid-template-columns: minmax(0,1fr) minmax(0,1.7778fr); }
   .project-link.is-cat-pair { grid-template-columns: minmax(0,1fr) minmax(0,2.25fr); }

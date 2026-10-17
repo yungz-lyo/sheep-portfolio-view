@@ -251,7 +251,7 @@
     const groups = mobileLayout.matches ? data.mobileGroups(item) : data.desktopGroups(item);
     groups.forEach((photos, position) => {
       const layout = data.layoutFor?.(item, photos);
-      if (mobileLayout.matches && position > 0 && layout !== "grid") {
+      if (mobileLayout.matches && position > 0 && photos.length > 1 && layout !== "grid") {
         fragment.append(carousel(photos));
         return;
       }

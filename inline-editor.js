@@ -2,7 +2,6 @@
   if (new URLSearchParams(location.search).get("edit") !== "1") return;
   const data = window.SheepPortfolio;
   const key = "sheep-original-layout-draft-v1";
-  const mobile = matchMedia("(max-width: 650px)");
   const original = {
     visible: data.visible, cover: data.cover,
     desktop: data.desktopGroups, mobile: data.mobileGroups, layoutFor: data.layoutFor,
@@ -11,7 +10,7 @@
   let draft;
   try { draft = JSON.parse(localStorage.getItem(key) || "null"); } catch { /* Start a new draft. */ }
   draft ||= { version: 1, removed: [], desktop: {}, mobile: {} };
-  const mode = () => mobile.matches ? "mobile" : "desktop";
+  const mode = () => "desktop";
   const project = () => data.projectById.get(location.hash.match(/^#project\/([\w-]+)$/)?.[1]);
   const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -28,7 +27,7 @@
     return rows(item, viewport).map((row) => row.ids.filter((id) => available.has(id)).map((id) => data.photoById.get(id))).filter((row) => row.length);
   }
   data.desktopGroups = (item) => photos(item, "desktop");
-  data.mobileGroups = (item) => photos(item, "mobile");
+  data.mobileGroups = (item) => photos(item, "desktop");
   data.layoutFor = (item, group) => rows(item).find((row) => row.ids.includes(group[0]?.id))?.layout;
 
   document.body.classList.add("inline-studio");

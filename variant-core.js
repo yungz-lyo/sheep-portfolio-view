@@ -144,30 +144,7 @@
   }
 
   function mobileGroups(project) {
-    const saved = publishedGroups(project, "mobile");
-    if (saved) return saved;
-    const [lead, ...rows] = groups(project);
-    if (!lead) return [];
-    const photos = rows.flat();
-    const boundaries = new Set();
-    let offset = 0;
-    rows.forEach((row) => {
-      offset += row.length;
-      boundaries.add(offset);
-    });
-    const best = Array(photos.length + 1);
-    best[photos.length] = { cost: 0, runs: [] };
-    const sizeCost = [0, 8, 3, 0, .8, 1.7];
-    for (let start = photos.length - 1; start >= 0; start -= 1) {
-      for (let size = 1; size <= 5 && start + size <= photos.length; size += 1) {
-        const end = start + size;
-        const cost = sizeCost[size] + (end < photos.length && !boundaries.has(end) ? 2 : 0) + best[end].cost;
-        if (!best[start] || cost < best[start].cost) {
-          best[start] = { cost, runs: [photos.slice(start, end), ...best[end].runs] };
-        }
-      }
-    }
-    return [lead, ...best[0].runs];
+    return desktopGroups(project);
   }
 
   function publishedGroups(project, viewport) {
@@ -178,8 +155,9 @@
       .filter((row) => row.length);
   }
 
-  function layoutFor(project, photos, viewport = innerWidth <= 650 ? "mobile" : "desktop") {
-    return published?.[viewport]?.[project.id]?.find((row) => row.ids.includes(photos[0]?.id))?.layout;
+  function layoutFor(project, photos) {
+    const rows = published?.desktop?.[project.id];
+    return rows?.find((row) => row.ids.includes(photos[0]?.id))?.layout;
   }
 
   function remove(id) {
