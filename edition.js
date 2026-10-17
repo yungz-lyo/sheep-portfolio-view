@@ -64,16 +64,18 @@
     const fragment = document.createDocumentFragment();
     data.projects.forEach((item) => {
       const pictures = data.visible(item);
-      const coverId = { devices: "select-16", wallets: "select-42" }[item.id];
+      const coverId = { "cat-space": "pick-57", devices: "select-16", wallets: "select-42" }[item.id];
       const cover = pictures.find((photo) => photo.id === coverId) || data.cover(item);
       if (!cover) return;
-      const side = item.id === "devices" ? pictures.find((photo) => photo.id === "select-67")
+      const sideId = { "cat-space": "pick-56", devices: "select-67" }[item.id];
+      const side = sideId ? pictures.find((photo) => photo.id === sideId)
         : pictures.find((photo) => photo.id !== cover.id && photo.width / photo.height < .9)
           || pictures.find((photo) => photo.id !== cover.id);
       const link = element("a", "project-link enter");
       const singleCover = ["social", "feeding", "grooming", "wallets"].includes(item.id);
       if (singleCover) link.classList.add("is-single-cover");
       if (item.id === "devices") link.classList.add("is-device-pair");
+      if (item.id === "cat-space") link.classList.add("is-cat-pair");
       link.href = `#project/${item.id}`;
       link.setAttribute("aria-label", `查看${item.title}，${pictures.length}张影像`);
       const copy = element("div", "project-copy");
