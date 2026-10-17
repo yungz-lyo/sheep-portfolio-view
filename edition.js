@@ -64,11 +64,16 @@
     const fragment = document.createDocumentFragment();
     data.projects.forEach((item) => {
       const pictures = data.visible(item);
-      const cover = data.cover(item);
+      const coverId = { devices: "select-16", wallets: "select-42" }[item.id];
+      const cover = pictures.find((photo) => photo.id === coverId) || data.cover(item);
       if (!cover) return;
-      const side = pictures.find((photo) => photo.id !== cover.id && photo.width / photo.height < .9)
-        || pictures.find((photo) => photo.id !== cover.id);
+      const side = item.id === "devices" ? pictures.find((photo) => photo.id === "select-67")
+        : pictures.find((photo) => photo.id !== cover.id && photo.width / photo.height < .9)
+          || pictures.find((photo) => photo.id !== cover.id);
       const link = element("a", "project-link enter");
+      const singleCover = ["social", "feeding", "grooming", "wallets"].includes(item.id);
+      if (singleCover) link.classList.add("is-single-cover");
+      if (item.id === "devices") link.classList.add("is-device-pair");
       link.href = `#project/${item.id}`;
       link.setAttribute("aria-label", `查看${item.title}，${pictures.length}张影像`);
       const copy = element("div", "project-copy");
@@ -81,7 +86,7 @@
       const main = element("div", "project-media project-main");
       main.append(imageFor(cover));
       link.append(copy, main);
-      if (side) {
+      if (side && !singleCover) {
         const secondary = element("div", "project-media project-side");
         secondary.append(imageFor(side));
         link.append(secondary);
