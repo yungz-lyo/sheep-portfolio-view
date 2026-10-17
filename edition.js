@@ -119,6 +119,91 @@
     return figure;
   }
 
+  function bindRail(rail, photos, count, previous, next, progress, fill, scrubber) {
+    let frame = 0;
+    let timer;
+    let requested = null;
+    const shots = () => [...rail.querySelectorAll(".edition-shot")];
+    const maximum = () => Math.max(0, rail.scrollWidth - rail.clientWidth);
+    function stops() {
+      if (maximum() < 2) return [0];
+      const left = rail.getBoundingClientRect().left;
+      return [...new Set(shots().map((shot) => Math.round(Math.max(0, Math.min(maximum(),
+        shot.getBoundingClientRect().left - left + rail.scrollLeft)))))];
+    }
+    function nearest(values) {
+      return values.reduce((best, value, index) =>
+        Math.abs(value - rail.scrollLeft) < Math.abs(values[best] - rail.scrollLeft) ? index : best, 0);
+    }
+    function update(settled = false) {
+      frame = 0;
+      if (rail.classList.contains("spread-rail")) sizeDesktopRail(rail, photos);
+      const items = shots();
+      if (!items.length) return;
+      const rect = rail.getBoundingClientRect();
+      const values = stops();
+      const position = nearest(values);
+      const current = items.reduce((best, shot, index) =>
+        Math.abs(shot.getBoundingClientRect().left - rect.left) < Math.abs(items[best].getBoundingClientRect().left - rect.left) ? index : best, 0);
+      const visible = mobileLayout.matches ? [current] : items.flatMap((shot, index) => {
+        const bounds = shot.getBoundingClientRect();
+        const overlap = Math.min(bounds.right, rect.right) - Math.max(bounds.left, rect.left);
+        return overlap >= Math.min(bounds.width, rect.width) * .55 ? [index] : [];
+      });
+      const first = visible[0] ?? current;
+      const last = visible[visible.length - 1] ?? current;
+      const number = (value) => String(value + 1).padStart(2, "0");
+      count.textContent = `${number(first)}${last > first ? `–${number(last)}` : ""} / ${String(photos.length).padStart(2, "0")}`;
+      previous.disabled = position === 0;
+      next.disabled = position === values.length - 1;
+      if (progress) {
+        progress.hidden = maximum() < 2;
+        const percentage = maximum() ? Math.max(0, Math.min(100, rail.scrollLeft / maximum() * 100)) : 100;
+        fill.style.width = `${percentage}%`;
+        scrubber.value = percentage;
+        scrubber.setAttribute("aria-valuetext", count.textContent);
+      }
+      if (settled) sizeMobileRail(rail, items[current]);
+    }
+    function go(index) {
+      const values = stops();
+      requested = Math.max(0, Math.min(values.length - 1, index));
+      rail.scrollTo({ left: values[requested], behavior: reduced.matches ? "auto" : "smooth" });
+    }
+    function settle() {
+      clearTimeout(timer);
+      requested = null;
+      update(true);
+    }
+    previous.addEventListener("click", () => go((requested ?? nearest(stops())) - 1));
+    next.addEventListener("click", () => go((requested ?? nearest(stops())) + 1));
+    rail.addEventListener("scroll", () => {
+      if (!frame) frame = requestAnimationFrame(() => update());
+      clearTimeout(timer);
+      timer = setTimeout(settle, 160);
+    }, { passive: true });
+    rail.addEventListener("scrollend", settle);
+    rail.addEventListener("pointerdown", () => { requested = null; }, { passive: true });
+    rail.addEventListener("wheel", () => { requested = null; }, { passive: true });
+    rail.addEventListener("load", () => update(true), true);
+    rail.addEventListener("keydown", (event) => {
+      if (event.target !== rail || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === "Home") go(0);
+      else if (event.key === "End") go(stops().length - 1);
+      else go((requested ?? nearest(stops())) + (event.key === "ArrowRight" ? 1 : -1));
+    });
+    if (scrubber) {
+      scrubber.addEventListener("input", () => {
+        requested = null;
+        rail.scrollTo({ left: maximum() * Number(scrubber.value) / 100, behavior: "instant" });
+      });
+      scrubber.addEventListener("change", () => go(nearest(stops())));
+    }
+    data.dragRail(rail);
+    requestAnimationFrame(() => update(true));
+  }
+
   function carousel(photos) {
     const block = element("div", "edition-spread is-carousel enter");
     const bar = element("div", "spread-controls");
@@ -134,43 +219,21 @@
     const rail = element("div", "spread-rail");
     const progress = element("div", "spread-progress");
     const progressFill = element("span");
-    progress.setAttribute("aria-hidden", "true");
-    progress.append(progressFill);
+    const scrubber = element("input");
+    scrubber.type = "range";
+    scrubber.min = "0";
+    scrubber.max = "100";
+    scrubber.step = ".1";
+    scrubber.value = "0";
+    scrubber.setAttribute("aria-label", "图片浏览进度");
+    scrubber.title = "拖动定位图片";
+    progress.append(progressFill, scrubber);
     rail.tabIndex = 0;
     rail.setAttribute("role", "region");
     rail.setAttribute("aria-label", "图片轮播");
-    data.dragRail(rail);
     photos.forEach((photo) => rail.append(photoFigure(photo)));
-    function active() {
-      if (rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2) return photos.length - 1;
-      const left = rail.getBoundingClientRect().left;
-      return [...rail.children].reduce((best, child, position, children) =>
-        Math.abs(child.getBoundingClientRect().left - left) < Math.abs(children[best].getBoundingClientRect().left - left) ? position : best, 0);
-    }
-    function update() {
-      sizeDesktopRail(rail, photos);
-      const position = active();
-      count.textContent = `${String(position + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
-      previous.disabled = position === 0;
-      next.disabled = position === photos.length - 1;
-      progressFill.style.width = `${(position + 1) / photos.length * 100}%`;
-      sizeMobileRail(rail, rail.children[position]);
-    }
-    function move(direction) {
-      const target = rail.children[Math.max(0, Math.min(photos.length - 1, active() + direction))];
-      if (target) rail.scrollTo({ left: target.offsetLeft - rail.offsetLeft,
-        behavior: reduced.matches ? "auto" : "smooth" });
-    }
-    previous.addEventListener("click", () => move(-1));
-    next.addEventListener("click", () => move(1));
-    rail.addEventListener("scroll", update, { passive: true });
-    rail.addEventListener("keydown", (event) => {
-      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-      event.preventDefault();
-      move(event.key === "ArrowRight" ? 1 : -1);
-    });
     block.append(bar, rail, progress);
-    requestAnimationFrame(update);
+    bindRail(rail, photos, count, previous, next, progress, progressFill, scrubber);
     return block;
   }
 
@@ -215,33 +278,8 @@
         previous.setAttribute("aria-label", "上一张");
         next.setAttribute("aria-label", "下一张");
         controls.append(count, previous, next);
-        function active() {
-          const shots = [...track.querySelectorAll(".edition-shot")];
-          const left = track.getBoundingClientRect().left;
-          return shots.reduce((best, shot, position) =>
-            Math.abs(shot.getBoundingClientRect().left - left) < Math.abs(shots[best].getBoundingClientRect().left - left) ? position : best, 0);
-        }
-        function update() {
-          const position = active();
-          count.textContent = `${String(position + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
-          previous.disabled = position === 0;
-          next.disabled = position === photos.length - 1;
-          sizeMobileRail(track, track.querySelectorAll(".edition-shot")[position]);
-        }
-        function move(direction) {
-          const shot = track.querySelectorAll(".edition-shot")[Math.max(0, Math.min(photos.length - 1, active() + direction))];
-          if (shot) track.scrollTo({ left: shot.offsetLeft - track.offsetLeft, behavior: reduced.matches ? "auto" : "smooth" });
-        }
-        previous.addEventListener("click", () => move(-1));
-        next.addEventListener("click", () => move(1));
-        track.addEventListener("scroll", update, { passive: true });
-        track.addEventListener("keydown", (event) => {
-          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-          event.preventDefault();
-          move(event.key === "ArrowRight" ? 1 : -1);
-        });
         block.append(controls, track);
-        requestAnimationFrame(update);
+        bindRail(track, photos, count, previous, next);
       }
       if (photos.length > 1) track.style.gridTemplateColumns = photos.map((photo) => `${photo.width / photo.height}fr`).join(" ");
       photos.forEach((photo) => track.append(photoFigure(photo)));

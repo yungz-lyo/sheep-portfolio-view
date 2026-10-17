@@ -194,7 +194,10 @@
     let suppressClick = false;
     rail.addEventListener("pointerdown", (event) => {
       if (event.pointerType !== "mouse" || event.button !== 0 || !rail.scrollWidth || rail.scrollWidth <= rail.clientWidth) return;
-      drag = { x: event.clientX, left: rail.scrollLeft, id: event.pointerId, moved: false };
+      if (event.target.closest("select, input, a, button:not(.shot-open)")) return;
+      suppressClick = false;
+      drag = { x: event.clientX, left: rail.scrollLeft, id: event.pointerId, moved: false,
+        lastX: event.clientX, time: event.timeStamp, velocity: 0 };
     });
     rail.addEventListener("pointermove", (event) => {
       if (!drag) return;
@@ -203,14 +206,31 @@
         rail.setPointerCapture(drag.id);
         rail.classList.add("is-dragging");
       }
-      if (drag.moved) rail.scrollLeft = drag.left + drag.x - event.clientX;
+      if (drag.moved) {
+        const elapsed = event.timeStamp - drag.time;
+        if (elapsed > 0) drag.velocity = (drag.lastX - event.clientX) / elapsed;
+        drag.lastX = event.clientX;
+        drag.time = event.timeStamp;
+        rail.scrollLeft = drag.left + drag.x - event.clientX;
+        if (event.cancelable) event.preventDefault();
+      }
     });
-    function stop() {
+    function stop(event) {
       if (!drag) return;
       suppressClick = drag.moved;
+      const velocity = event.timeStamp - drag.time < 100 ? drag.velocity : 0;
+      const moved = drag.moved;
+      if (rail.hasPointerCapture(drag.id)) rail.releasePointerCapture(drag.id);
       drag = null;
       rail.classList.remove("is-dragging");
-      setTimeout(() => { suppressClick = false; }, 0);
+      if (!moved || event.type === "pointercancel") return;
+      const max = Math.max(0, rail.scrollWidth - rail.clientWidth);
+      const left = rail.getBoundingClientRect().left;
+      const projected = rail.scrollLeft + Math.max(-240, Math.min(240, velocity * 120));
+      const stops = [...rail.querySelectorAll(".edition-shot")].map((shot) =>
+        Math.max(0, Math.min(max, shot.getBoundingClientRect().left - left + rail.scrollLeft)));
+      const target = stops.reduce((best, value) => Math.abs(value - projected) < Math.abs(best - projected) ? value : best, 0);
+      rail.scrollTo({ left: target, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
     rail.addEventListener("pointerup", stop);
     rail.addEventListener("pointercancel", stop);
