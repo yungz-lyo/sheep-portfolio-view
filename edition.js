@@ -180,15 +180,17 @@
     const fragment = document.createDocumentFragment();
     const groups = mobileLayout.matches ? data.mobileGroups(item) : data.desktopGroups(item);
     groups.forEach((photos, position) => {
-      if (mobileLayout.matches && position > 0) {
+      const layout = data.layoutFor?.(item, photos);
+      if (mobileLayout.matches && position > 0 && layout !== "grid") {
         fragment.append(carousel(photos));
         return;
       }
-      if (photos.length >= 4 || (photos.length === 3 && data.closeInTone(photos))) {
+      if (layout === "carousel" || (layout !== "grid" && (photos.length >= 4 || (photos.length === 3 && data.closeInTone(photos))))) {
         fragment.append(carousel(photos));
         return;
       }
       const block = element("div", `edition-spread enter ${photos.length === 1 ? "is-single" : ""} ${position === 0 ? "is-cover" : ""}`);
+      if (layout === "grid") block.classList.add("custom-grid");
       let track = block;
       if (photos.length === 1 && photos[0].width / photos[0].height < .85) block.classList.add("is-portrait");
       if (photos.length === 2 && photos.every((photo) => photo.width / photo.height < .9)) block.classList.add("mobile-pair");

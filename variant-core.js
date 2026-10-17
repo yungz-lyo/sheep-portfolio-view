@@ -7,6 +7,7 @@
   const storageKey = "sheep-portfolio-removals-v1";
   const hero = "assets/portfolio/select-14.webp";
   const publicView = typeof document !== "undefined" && document.body.classList.contains("public-view");
+  const published = window.SHEEP_LAYOUT;
   const fixed = {
     social: [
       ["select-74", "select-69", "select-75"],
@@ -128,6 +129,8 @@
   }
 
   function desktopGroups(project) {
+    const saved = publishedGroups(project, "desktop");
+    if (saved) return saved;
     const [lead, ...rows] = groups(project);
     if (!lead) return [];
     const spreads = [lead];
@@ -141,6 +144,8 @@
   }
 
   function mobileGroups(project) {
+    const saved = publishedGroups(project, "mobile");
+    if (saved) return saved;
     const [lead, ...rows] = groups(project);
     if (!lead) return [];
     const photos = rows.flat();
@@ -163,6 +168,18 @@
       }
     }
     return [lead, ...best[0].runs];
+  }
+
+  function publishedGroups(project, viewport) {
+    const rows = published?.[viewport]?.[project.id];
+    if (!rows) return null;
+    const available = new Set(visible(project).map((photo) => photo.id));
+    return rows.map((row) => row.ids.filter((id) => available.has(id)).map((id) => photoById.get(id)))
+      .filter((row) => row.length);
+  }
+
+  function layoutFor(project, photos, viewport = innerWidth <= 650 ? "mobile" : "desktop") {
+    return published?.[viewport]?.[project.id]?.find((row) => row.ids.includes(photos[0]?.id))?.layout;
   }
 
   function remove(id) {
@@ -214,6 +231,6 @@
   });
 
   window.SheepPortfolio = { projects, archive, projectById, photoById, hero,
-    visible, cover, caption, groups, desktopGroups, mobileGroups, closeInTone,
+    visible, cover, caption, groups, desktopGroups, mobileGroups, closeInTone, layoutFor,
     remove, dragRail, get removed() { return removed; } };
 })();

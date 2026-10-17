@@ -1,0 +1,25 @@
+.inline-studio { padding-bottom: 86px; }
+.inline-studio .editor-dock { position: fixed; z-index: 60; inset: auto 0 0; display: flex; align-items: center; gap: 12px; padding: 12px max(16px,calc((100% - 1480px)/2)); border-top: 1px solid #d5dad6; background: rgba(255,255,255,.98); box-shadow: 0 -4px 18px #00000008; font-size: 12px; }
+.editor-dock strong { white-space: nowrap; }
+.editor-dock output { margin-right: auto; color: #65706b; }
+.editor-dock button, .editor-group-tools button, .editor-photo-tools button, .editor-photo-tools select { min-height: 36px; border: 1px solid #d5dad6; background: white; color: #171b19; padding: 6px 10px; font: inherit; }
+.editor-dock button:last-child { background: #171b19; color: white; border-color: #171b19; }
+.editor-dock button:disabled, .editor-group-tools button:disabled, .editor-photo-tools button:disabled { opacity: .35; cursor: default; }
+.editor-group-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 10px 0; border-top: 1px dashed #d44932; font-size: 12px; }
+.editor-group-tools > span { margin-right: auto; color: #65706b; }
+.editor-group-tools button[aria-pressed="true"] { border-color: #171b19; background: #171b19; color: white; }
+.editor-photo-tools { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; font-size: 12px; }
+.editor-photo-tools select { min-width: 0; max-width: 130px; }
+.editor-photo-tools .editor-remove { margin-left: auto; color: #b03224; }
+.inline-studio.is-preview .editor-group-tools, .inline-studio.is-preview .editor-photo-tools { display: none; }
+.inline-studio.is-preview .editor-dock output { color: #171b19; }
+.custom-grid .mobile-swipe-track { display: grid; grid-template-columns: repeat(var(--editor-columns,3),minmax(0,1fr)) !important; }
+.custom-grid .mobile-swipe-controls { display: none; }
+@media(max-width:650px) {
+  .inline-studio { padding-bottom: 130px; }
+  .inline-studio .editor-dock { flex-wrap: wrap; gap: 8px; padding-bottom: max(12px,env(safe-area-inset-bottom)); }
+  .editor-dock output { flex: 1; }
+  .editor-dock button { min-height: 44px; }
+  .editor-group-tools button, .editor-photo-tools button, .editor-photo-tools select { min-height: 44px; }
+  .custom-grid .mobile-swipe-track { height: auto !important; grid-template-columns: repeat(2,minmax(0,1fr)) !important; overflow: visible; }
+}
